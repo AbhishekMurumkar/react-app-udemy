@@ -1,0 +1,118 @@
+Note: that below notations will work with babel as javascript pre-processor
+=======================================================================
+1) let & const
+=======================================================================
+2) Arrow function:
+const a = function(){}
+	transered to
+const a=()=>{}
+//if we have only one arguement
+const a = param => {}
+// suppose in our function body we have only one return statement , like below
+const mul = num =>{ return num*2;}
+// can be written as
+const mul = num => num*2;
+
+this also resolves the issue of this keyword in javascript
+========================================================================
+3) exports and imports to support modularization of code snippets:
+// to export something
+export default object_or_variable_or_const_name;
+example:
+	1)	const person = { name:'Abhi' }
+	export default person [let the content be present in a file named as person.js]
+	2)	export const clean = ()=>{..}
+		export const baseData = 10;[let the content be present in a file named as utility.js]
+
+// to import something
+import object_or_variable_or_const_name from './path/of/export/js/file'
+example:
+	1)	import person from './person.js';
+		import prs from './person.js'; [no matter at what name we import person.js we always end up in importing the person object with name as 'max' value as sub object since the presence of default keyword on the export in person.js . Thus person and prs denote the same person object]
+
+	2)	import { baseData } from './utility.js';
+		import { clear } from './utility.js';
+		[These are called the named exports since we exporting specfic parts of the file via their name]
+================================================================================
+4) classes
+Note the methods written above short notations cannot be ran by plain javascript hence we need the babel to run it
+========================================================================
+5) spread and rest operators
+=>spread: used to split up array or dom properties
+EX:
+	const newarr = [...oldarr,1,2] -> this spread tends to add the elements 1,2 to old array and place it in the newarr variable
+	const newProp = {...oldObj,newProp:value}
+	this is same as above where we tend to app property named newProp with value 'value' to an existing object 'oldObj' and thus point new object to 'newProp'( if newProp named property already exists in oldObj then its value is being overriden with new value 'value')
+
+=>rest: used to merge a list of arguements into an array
+		Ex: function numbers(...args){..}
+//example for spread operator
+let person={
+  'name':"abhishek"
+};
+
+let new_person={
+  ...person,
+  age:23
+};
+console.log(new_person);
+//example for rest operator
+function add(...args){
+  let sum=0;
+  console.log(args);
+  for(let i in args){
+     sum+=args[i];
+  }
+  console.log('total sum='+sum);
+}
+add(1,2,3);
+
+=========================================================================
+Destructuring: 
+->extract the array elements or dom properties and store them in a variable
+->difference between spread and destructuring is that
+	spread operator will takes elements or properties and distributes in the new variable
+	where as destructuring is allowed for specific property or element
+
+Array Destructuring: 
+	[a,b]=[1,2]( thus a=1 and b=2 )
+	[a,,c]=[1,2,3]( thus a=1 and c=3 )
+Object Destructuting: {name,age}={name:'Abhi',age:'23'} ( thus name='Abhi' and age='23' )
+===============================================================================
+Reference and Primitive Type Refreshers:
+
+In primitive type of objects:
+let num=2; let ref_num=num; num=1;
+console.log('primitive real='+num+' ref = '+ref_num); ( output: primitive real=1 and ref=2)
+Here there is no problem
+
+In Non primitive type of objects:
+let obj = {
+  name:'abhi'
+}
+let ref_obj=obj;
+obj.name='abhishek';
+console.log('non primitive real');console.log(obj); ( output: non primitive real = {name:'abhishek'} )
+console.log('non primitive ref');console.log(ref_obj);( output: non primitive ref = {name:'abhishek'} )
+	There here we can clearly see that the copying of non primitive objects are working here as they are immutable in nature. Hence to avoid such things and let having a copy of object we can do the following
+let ref_obj2={
+	...obj
+}
+console.log('non primitive real');console.log(obj); ( output: non primitive real = {name:'abhishek'} )
+console.log('non primitive ref');console.log(ref_obj2);( output: non primitive ref = {name:'abhi'} )
+The immutability applies to both arrays and objects
+=====================================================================
+Array functions:(also works without babel)
+    map()  => https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map
+    find()  => https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find
+    findIndex()  => https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/findIndex
+    filter()  => https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
+    reduce()  => https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce?v=b
+    concat()  => https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/concat?v=b
+    slice()  => https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice
+    splice()  => https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice
+=================================================================================
+
+Continue to quickstart-react.txt
+
+

@@ -1,0 +1,18 @@
+Rendering Conditional Basis:
+	Method 1:
+	{ this.state.var ? <div></diiv>:null}
+	Method 2:
+	in render(){
+		if(true){
+			src=build elemnts
+		}else{
+			src=null
+		}
+		return(src);
+	}
+
+===================================================================================
+Loops
+{this.var}
+
+Next to stylings.txt

@@ -1,0 +1,20 @@
+.Person {
+width:80%;
+margin: 20px auto;
+border:1px solid #eee;
+box-shadow: 0 2px 3px #ccc;
+padding: 16px;
+text-align: center;
+background: #8e8e8e;
+}
+.Person:hover {
+	background-color:#caf3ca;
+	color:#c94041;
+	poiter:'curosr';
+}
+
+@media (min-width: 500px){
+	.Person{
+		width: 500px;
+	}
+}

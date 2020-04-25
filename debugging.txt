@@ -1,0 +1,3 @@
+1) Error Boundary : works only in production mode
+2) not to be used for every error handling but only for certain things which you know when application fails
+next class-lifecycle.txt

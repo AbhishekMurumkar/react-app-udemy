@@ -1,0 +1,14 @@
+DONE:
+	1. create an input field in (App comp) with a change listener which outputs length of entered text-align
+	2. create new component (=> Validation Component) whcih receives the text length as prop
+	3. inside validation comp, either output 'too short' or 'too long' depending on text length(Min:5)
+4. create another comp(=> Char Component) and style it as 
+{
+	display:inline-block,
+	padding:16px,
+	text-align:center,
+	margin:16px,
+	border:1px solid black	
+}
+5. Render a list of Char Comps where each comp receives different letter of entered text (in initial input field as prop)
+6. when you click chatcomp, it should be removed from entered text

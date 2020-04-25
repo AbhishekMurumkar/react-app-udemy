@@ -1,0 +1,8 @@
+1 Err) Even though i changed the App component to Assignment COmponent still App component loaded
+ Soln) What went wrong was the part That App component was commented in react , for commnets you use
+ 		{/*  .....  */} not //
+
+2 Err) React JSX file giving error “Cannot read property 'createElement' of undefined”
+ Soln) changed import {React,Component} to import React,{Component} which means that
+ 		->{} Classes are loaded dynamically 
+ 		-> then ones not present in {} are loaded by default, in our case we need React to export by default hence we cant keep in React in {}

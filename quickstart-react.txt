@@ -1,0 +1,86 @@
+React concepts:
+
+1) Creating the APP:
+	1. install create-react-app dependency via npm -> npm install -g create-react-app
+	2. create react app -> create-react-app my_app
+	3. move into app folder -> cd my_app
+	4. start server of react app -> npm start
+
+2) Folder Structure:
+In root:
+	package.json: declaring the react apps dependencies, which are
+	    "@testing-library/jest-dom": "^4.2.4",
+	    "@testing-library/react": "^9.5.0",
+	    "@testing-library/user-event": "^7.2.1",
+	    "react": "^16.13.1",
+	    "react-dom": "^16.13.1",
+	    "react-scripts": "3.4.1"
+In Public, we can only have single html page (index.html)
+In Public, the manifest.json is the file for supporting the dependencies of PWA's
+In public/src,
+	index.js searches for the id named as 'root' in index.html and injects the react code
+		ReactDOM.render(
+		  <React.StrictMode>
+		    <App />
+		  </React.StrictMode>,
+		  document.getElementById('root')
+		);
+
+		Thus internally loading the App react object <App /> from `import App from './App';`
+
+	App.js
+		see the code, there comments for notes
+
+====================================================================
+JSX RESTRICTIONS:
+
+-> some keywords cant be used as simple html since they are aleady defined in react. Ex: class, should be written as className in JSX
+-> you can only have one root tag in the JSX return method, thus you need to nest everything in a single root element
+======================================================================
+creating a component:
+
+When creating components, you have the choice between two different ways:
+    1. Functional components (also referred to as "presentational", "dumb" or "stateless" components - more about this later in the course) => const cmp = () => { return <div>some JSX</div> } (using ES6 arrow functions as shown here is recommended but optional)
+
+    2.class-based components (also referred to as "containers", "smart" or "stateful" components) => class Cmp extends Component { render () { return <div>some JSX</div> } }
+
+1. create Person/Person.js in src folder,
+2. see the code in the Person.js for notes
+======================================================================
+working of components and re-using them
+
+->outputting dynamic content:
+1.executing the javascript content in the JSX is done by interpolation {..}
+
+->passing dynamic content/configuration to a component and render it. This is called as "PROPS"
+
+->children components properties:{props.children}
+
+->State Management in components:
+	->Thus to manage state we need to have the class-based component
+	->state variable in component class is auto-matically defined
+
+->Events with methods
+	https://reactjs.org/docs/events.html#supported-events
+onclick(event handler in normal javascript)
+onClick(event handler in JSX)
+
+Thus in react the dom-manipulation or updation are done via : props and states
+=================================================================================
+REACT HOOKS: implementation of states in the functional-based components
+
+NOTE:
+-> IN CLASS BASED COMPONENT, WHENEVER WE CHANGE THE STATE OF A SINGLE OBJCET IN STATE , OTHERS ARE NOT DISTURBED AND STILL BE PRESENT IN STATE
+-> IN FUNCTION BASED COMPONENT, WHENEVER WE CHANGE THE STATE BY KEEPING NEW VALUES, ONLY THOSE VALUES BE ACCESSIBLE AND PREVIOUS DATA IS COMPLETELY DESTROYED
+-> IF YOU WANT THE PREVIOUS STATE DATA FROM THE ABOVE POINT, IN THE UPDATED STATE FUNCTION YOU NEED TO KEEP A REFERENCE OF PREVIOUS STATE OBJCET OR VARIABLE
+-> THE ABOVE POINT WILL BE TROUBLE SOME WHEN WE HAVE MORE VARIABLES, HENCE IT IS ADVISABLE TO USE THE useState() INDIVIDUALLY FOR THE element
+====================================================================================
+TWO WAY BINDING IN REACT
+->
+=====================================================================================
+->There are 2 ways to include css 
+	1. create variables in render to pass it to JSX element as inline css. Note here not everyhting from css works but we need to write JSX css
+		Ex: like background-color must be written as backgroundColor
+	2. create a new css file and import it at starting of js file
+
+Continuation Modules.txt

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>React First One</title>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+    <style type="text/css">
+    .person {
+        display: inline-block;
+        margin: 10px;
+        border: 1px solid #eee;
+        box-shadow: 0 2px 2px #ccc;
+        width: 200px;
+        padding: 20px;
+    }
+    </style>
+</head>
+
+<body>
+    <div id='app'></div>
+</body>
+<script type="text/javascript">
+function Persion(props) {
+    return (
+        <div class="person">
+				<h2>{props.name}</h2>
+				<p> Age : {props.age}</p>
+			</div>
+    );
+}
+var app = (
+    <div>
+			<Persion name='Abhishek' age='23' />
+			<Persion name='Abhi' age='23' />
+			<Persion name='shek' age='23' />
+		</div>
+);
+RenderDOM.render(app, document.querySelector('#app'));
+</script>
+
+</html>

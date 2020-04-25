@@ -1,0 +1,33 @@
+.UserInputDiv {
+    width: 60%;
+    margin: 25px auto;
+    padding: 16px;
+    background: #343435;
+    border: 1px solid #0ff;
+    text-align: center;
+}
+.UserInputDiv p {
+    font-size: 23px;
+    font-weight: bold;
+    color: #e6b117eb;
+    text-decoration-line: underline;
+}
+
+input[type=text]:focus {
+    background-color: lightblue;
+    text-decoration: none;
+}
+
+input.user-input {
+    width: 55%;
+    box-sizing: border-box;
+    border: 2px solid #653434;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: #f3b4b4ab;
+    background-image: url('search.png');
+    background-position: 5px 5px;
+    background-repeat: no-repeat;
+    padding: 10px 10px 10px 36px ;
+    background-size: 25px; 
+}

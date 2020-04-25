@@ -1,0 +1,32 @@
+These are only available to class based components
+->constructor()
+
+->getDerivedStateFromProps()
+->getSnapshotBeforeUpdate()
+->componentDidCatch()
+->componentWillUnmount()
+
+->shouldComponentUpdate()
+->componentDidUpdate()
+->componentDidMount()
+->render()
+=====================================================================================
+creation
+--------------
+Note : Lifecycle hooks has nothing to do with react hooks
+steps
+1) constructor(props):default ES6 feature : mainly initialization but main thing is not set side effects(like sending http, stroing local storage, google analytics as they can impact performances and can cause unnecessary re-rendering cycles
+
+2)getDerivedStateFromProps(props,state) : when props change, we can synchronize the changes in component
+3)render():only to prepare the layout (do not set any timeouts or sleeps )
+	Here child components also start to run, when all the child component rendering finished then 
+4)componentDidMount(): Here you can cause / call the side effects but dont update the state (unless if its a promise)
+
+Updation
+------------
+1)getDerivedStateFromProps(props,state)
+2)shouldComponentUpdate(nextProps,nextState): may cancel the updation of process, i.e, here we can decide that component rendering must be re-rendered or not based on new props and state. This is mainly for performance opti
+3)render()
+	update all child components props
+4)getSnapshotBeforeUpdate(prevProps,prevState): for last min dom operations, scrolling 
+5)componentDidUpdate(): here to indicate that required updations are made in component and comp is ready for side effects. If any updates are made here then the updation cycle starts agains

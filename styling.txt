@@ -1,0 +1,36 @@
+we can write css in to app via
+1) separate css file
+2) in-line css(with dynamic changing of values)
+3) Using of Radium and {StyleRoot} modules(npm install) 
+	->Radium gives support of css into react for properties like(:hover,:foucs etc)
+	-> While exporting the app of radium we need to first encapsulate it with Radium. Ex: export default Radium(App) in order to get working of css-extra(hover,foucs) written in react code
+	->In order to write media query in js code we need to StyleRoot where it must the encapsulated with rendering content of main component this will check the styling every child.Ex:
+	IN App.js:
+		return(
+		<StyleRoot>
+		....
+		</StyleRoot>
+		)
+	-> It is advisable to write in css file if you're using css with its extra properties. If your css involves media it is advisable to use the Radium with Style Root
+===============================================================================
+Styled Components: Third Party Library:
+
+1)Err: Styled component was undefined: Bloddy idiot forgot to remove <StyleRoot> tag in app.js from above code
+2) we can send the component data to styled components via props
+Ex:
+const StyledButtonView=styled.button`
+    background:${props=>props.alt?'green':'red'};
+    &:hover{
+      background-color:#${props=>props.alt?'c1f7b7':'fdd0d0'};
+      color:${props=>props.alt?'red':'green'};
+      poiter:'curosr';
+    }
+`;
+<StyledButtonView alt={this.state.showPersons} onClick={this.togglePersons}>Toggle Persons</StyledButtonView>
+======================================================================================
+Class Modules in React:
+in the latest version of react there is no need of ejecting app but directly can import css file as module
+for which we just need to rename our css file to filename.module.css
+then import into react code as "import styles from './filename.module.css';"
+
+continuation debugging.txt
