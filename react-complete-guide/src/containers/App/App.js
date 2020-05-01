@@ -1,15 +1,17 @@
-import React from 'react';
-import { Component } from 'react';
+import React from "react";
+import { Component } from "react";
 //all the hooks have use as prefix
 // import { useState } from 'react';
 // import logo from './logo.svg';
 // external style sheet styling for app
 // import './App.css';
 // importing the above css in the form of a module
-import appStyles from './App.module.css'; 
+import appStyles from "./App.module.css";
 // import custom component made by us
 import Persons from "../../components/Persons/Persons";
 import Cockpit from "../../components/Cockpit/Cockpit";
+
+import authContext from "../../context/auth-context";
 // import styled from "styled-components";
 // const StyledButtonView=styled.button`
 //     font: inherit;
@@ -68,29 +70,38 @@ import Cockpit from "../../components/Cockpit/Cockpit";
 //   //thus above statements gives same-output as the code above commented
 // }
 class App extends Component {
-    
-    constructor(props){
+    constructor(props) {
         super(props);
-        console.log('Appjs cons');
+        console.log("Appjs cons");
         // while defining new variables or objects in class we dont need to define the type of variable used
         // states are majorly used to change the state of a variable or object internally in a class
         this.state = {
             person: [
-                { name: 'Abhi', age: 23 },
-                { name: 'Surya', age: 22 },
-                { name: 'Srinidhi', age: 21 },
-                { name: 'Srinidhi', age: 21 }
+                { name: "Abhi", age: 23 },
+                { name: "Surya", age: 22 },
+                { name: "Srinidhi", age: 21 },
+                { name: "Srinidhi", age: 21 },
             ],
-            showPersons: true
+            showPersons: false,
+            showCockpit: true,
+            nameChangedCounter: 0,
+            authenticate:false
         };
     }
 
-    static getDerivedStateFromProps(props,state){
-        console.log('App js getDerivedStateFromProps',props,state);
+    static getDerivedStateFromProps(props, state) {
+        console.log("App js getDerivedStateFromProps", props, state);
         return state;
     }
-    componentDidMount(){
-        console.log('Appjs didMount');
+    componentDidMount() {
+        console.log("Appjs didMount");
+    }
+    shouldComponentUpdate(nextProps, nextState) {
+        console.log("App js shouldComponentUpdate", nextProps, nextState);
+        return true;
+    }
+    componentDidUpdate() {
+        console.log("App js componentDidUpdate");
     }
     // first method without params
     // switchNameHandler = ()=>{
@@ -106,17 +117,17 @@ class App extends Component {
     // }
     //first method with params
     switchNameHandler = (newName) => {
-        console.log('button clicked');
+        console.log("button clicked");
         // this.state.person[2]='Abhishek'; //DONT DO THIS since state already person[2] object which is immutable
         this.setState({
             person: [
-                { name: 'Abhishek', age: 23 },
-                { name: 'Nagarjuna', age: 22 },
+                { name: "Abhishek", age: 23 },
+                { name: "Nagarjuna", age: 22 },
                 { name: newName, age: 21 },
                 { name: newName, age: 19 },
-            ]
+            ],
         });
-    }
+    };
     // code to delete a person based on an index
     deletePersonHandler = (deleteindex) => {
         console.log(deleteindex);
@@ -135,8 +146,17 @@ class App extends Component {
     // code to handle the change event whenever user types names in the Person.js
     nameChanger = (event, index) => {
         let temp_persons = [...this.state.person];
-        temp_persons[index].name=event.target.value;
-        this.setState({person:temp_persons})
+        temp_persons[index].name = event.target.value;
+        // this.setState({ person: temp_persons })
+        
+        // the above method executes asynchronously where we may not get exact previous data some time
+        // now we converting to synchrously
+        this.setState((prevState, props) => {
+            return {
+                person: temp_persons,
+                nameChangedCounter: prevState.nameChangedCounter + 1,
+            };
+        });
 
         // this.setState({
         //     person: [
@@ -146,12 +166,23 @@ class App extends Component {
         //         { name: event.target.value, age: 20 }
         //     ]
         // });
-    }
+    };
     // method to toggle person view
     togglePersons = () => {
         this.setState({
-            showPersons: !(this.state.showPersons)
+            showPersons: !this.state.showPersons,
         });
+    };
+    toggleCockpit = () => {
+        this.setState({
+            showCockpit: !this.state.showCockpit,
+        });
+    };
+
+    loginHandler=()=>{
+        this.setState({
+            authenticate:true
+        })
     }
     // we cannot declare the styles out of render method because whenever we do that they are treated as read
     // only objects which can be changed only while first load but not after that
@@ -163,10 +194,10 @@ class App extends Component {
     //     cursor: 'pointer'
     // };
     togglePersonsView = null;
-    
+
     // based on the value present
     render() {
-        console.log('App js render');
+        console.log("App js render");
         // inline styling for button
         // const style = {
         //     // backgroundColor: 'white',
@@ -176,31 +207,31 @@ class App extends Component {
         //     cursor: 'pointer',
         // };
 
-
         if (this.state.showPersons) {
             // this.toggleBtnClass = appStyles.toggleBtn+" "+appStyles.green;
-          // style.backgroundColor='green';
-          // style.color='white';
-          // style[':hover']={
-          //   backgroundColor:'#b6ecb6',
-          //   color:'black'
-          // }
-         
-          // style[':hover']={
-          //   backgroundColor:'azure',
-          //   color:'black'
-          // };
-          // this.toggleBtnClass = appStyles.toggleBtn+" "+appStyles.green;
+            // style.backgroundColor='green';
+            // style.color='white';
+            // style[':hover']={
+            //   backgroundColor:'#b6ecb6',
+            //   color:'black'
+            // }
+
+            // style[':hover']={
+            //   backgroundColor:'azure',
+            //   color:'black'
+            // };
+            // this.toggleBtnClass = appStyles.toggleBtn+" "+appStyles.green;
             this.togglePersonsView = (
-                <Persons 
+                <Persons
                     persons={this.state.person}
                     clicked={this.switchNameHandler}
                     changed={this.nameChanger}
                     delete={this.deletePersonHandler}
+                    // isAuthenticated={this.state.auth}
                 />
-          );
+            );
         } else {
-            // this.toggleBtnClass = appStyles.toggleBtn+" "+appStyles.red;            
+            // this.toggleBtnClass = appStyles.toggleBtn+" "+appStyles.red;
             // style.backgroundColor='red';
             // style.color='white';
             // style[':hover']={
@@ -209,7 +240,7 @@ class App extends Component {
             // }
             this.togglePersonsView = null;
         }
-         // console.log(style);
+        // console.log(style);
         // return (
         //   <StyleRoot>
         //     <div className="App">
@@ -219,21 +250,34 @@ class App extends Component {
         //     </div>
         //   </StyleRoot>
         // );
-    return (
-        // normal css styling with css import
-        // <div className="App">
-        // css styling with css-module as import
-        <div className={appStyles.App}>
-            <Cockpit 
-              showPersons={this.state.showPersons} 
-              persons={this.state.person.length}
-              togglePersons={this.togglePersons}
-              title={this.props.title}/>
-            <button key="b1" onClick={()=>{this.switchNameHandler('Divya')}}>Switch name</button>
-            {/*<button key="b1" style={style} onClick={()=>{this.switchNameHandler('Divya')}}>Switch name</button>*/}
-            {this.togglePersonsView}
-        </div>
-    );
+        return (
+            // normal css styling with css import
+            // <div className="App">
+            // css styling with css-module as import
+            <div className={appStyles.App}>
+                <button onClick={this.toggleCockpit}>Toggle Cockpit</button>
+                <authContext.Provider value={{authenticate:this.state.authenticate,login:this.loginHandler}}>
+                     {this.state.showCockpit ? (
+                        <Cockpit
+                            showPersons={this.state.showPersons}
+                            persons={this.state.person.length}
+                            togglePersons={this.togglePersons}
+                            title={this.props.title}
+                            // login={this.loginHandler}
+                        />) 
+                        : null
+                    }
+                    <button
+                        key="b1"
+                        onClick={() => {
+                            this.switchNameHandler("Divya");
+                        }}
+                    >Switch name</button>
+                    {/*<button key="b1" style={style} onClick={()=>{this.switchNameHandler('Divya')}}>Switch name</button>*/}
+                    {this.togglePersonsView}
+                </authContext.Provider>
+            </div>
+        );
     }
 }
 export default App;

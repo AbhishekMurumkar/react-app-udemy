@@ -1,0 +1,39 @@
+1) before render(),in shouldComponentUpdate it receives new props and state
+2) for which react checks the current old virtual dom and re-rendered dom from new state and props
+3) in re-rendering dom, react doesnt actually affect the real dom but instead it makes a comparision between those two
+4) if any changes found , then react searches for changes present in the re-rendered and present dom
+5) based on the changes found now react checks for the user conditions from shouldComponentUpdate()
+6) if yes, now react will change the real dom according to changes obtained from re-rendered vir dom
+== see DOM_UPDATION1.png 
+
+=========================================================
+Rendering Adjacent JSX elements: see App.js Adjacent JSX rendering code
+
+    =>Higher order component:component wrapping itself with other components and then may add some extra logic to it.
+
+->Aux:
+->React.Fragment:
+=======================================================
+Checking the props type in components to handle comp better:
+-> npm install prop-types
+
+
+=======================================================
+Refs in react.
+
+==>In class based components:
+we can create them in 2 ways 
+	(1) keeping ref attribute in JSX element and defining the class object referece to in an anonymous function(see person.js)
+	(2) keeping ref attribute in JSX element and defining variable via React.createRef() (see Person.js)
+
+==>Refs in react hooks.(functional components):
+	see cockpit.js
+=============================================================
+CONTEXT API:
+
+context is a simply a variable which makes to data to be accessible across components without declaring them as props in between the components.
+
+contextType & useContext()
+==============================================================
+ 
+contd. Planning.txt

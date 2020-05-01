@@ -30,3 +30,39 @@ Updation
 	update all child components props
 4)getSnapshotBeforeUpdate(prevProps,prevState): for last min dom operations, scrolling 
 5)componentDidUpdate(): here to indicate that required updations are made in component and comp is ready for side effects. If any updates are made here then the updation cycle starts agains
+6)componentWillUnmount(): here we can execute the cleaning up of the code , that is this method is executed before an element is going to be removed from virtual DOM. 
+
+Note :
+->componentDidMount,componentDidUpdate are for performance improvences as we can do things like fetching data from server..etc
+->shouldComponentUpdate is the most important hook as it decides whether to furthur update the application
+===================================================================
+Life cycle hooks in functional components: useEffect()
+
+->useEffect is second most important hook after useState hook.
+-> we can do the http request from here.
+-> You can have as many useEffect as you want.
+
+Controlling the execution of useEffect: there may be times where we need to run this useEfect only at paticular times rather than every render cycle.Thus use
+useEfect(()=>{ . . . . },
+	[conditional variable1,var2,var3]
+)
+where react checks the variable1,var2,var3 variables if there is any change ,if yes then useEffect is executed
+
+->if we simply pass [] in above syntax useEffect is ran only once while start of building of component 
+
+====================================================================
+cleaning up life cycle hooks and useEfect:
+
+check cockpit.js
+========================================================================
+Optimization by eliminating un-necessary re-rendering of components:
+in classes comp: we use shouldComponentUpdate to validate whether we need to update or not
+in functional comp: we use React.memo() to validate whether we need to update or not
+
+-> one thing we need to check while Optimization that instead of writing the lifecycle hooks or useEffect in child components it is better to check whole respective state in root module. Since if root module says that state has changed then the child components will need to render them. Thus writing the life cycles methods in the child may or may not make sense for some times. Thus is better to remove them in child components. But we can use them in the child if there is change validation to be made that matters to child component content.
+========================================================================================
+Pure Component instead of shouldComponentUpdate(): 
+PureComponent checks every incoming props and states to see if there are anychanges if yes then it is rendered , if not it not disturbed. Hence this is used to remove the manual checking and reduction in code written
+
+
+Cont : DOM_UPDATION.txt

@@ -1,0 +1,67 @@
+Planning 
+	1. COMPONENT TREE/STRUCTURE
+	2. APPLICATION STATE (DATA)
+	3. COMPONENT VS CONTAINER
+
+For Burger builder:
+	1. In ui,
+		in header we can have logo 
+		in builder, we can see preview of burger with ingrediensts.Thus to modfy content of it we need some controls to edit the content of the ingredients where for each ingredient we need to add + or - button to add or remove them from the stack
+		in footer we need to have checkout button showing the price of burger from ingredients present in the burger
+
+		TREE:
+App->
+	Layout ->
+	Tool bar ->
+			drawer toggle
+			logo
+			navigation items
+
+	side bar ->
+				logo
+				navigation items
+	back drop
+	props children ->
+					burger builder page/comp ->
+												build controls ->
+																 list of individaul build components
+
+																 order button
+												preview of burger -> 
+																	list of individual ingedrients comp
+
+
+												modal to checkout -> 
+																	wrapper comp
+
+	2. STATE AND STATELESS DESIGN:
+		here we need to record state of
+		1. ingredients{meat:1,cheese:2}
+		2. purchased: boolean
+		3. totalprice: number
+
+App->
+	Layout ->
+	Tool bar ->
+			drawer toggle
+			logo
+			navigation items
+
+	side bar ->
+				logo
+				navigation items
+	back drop
+	props children ->
+					burger builder page/comp :
+						here we are building the state full component rather than the App comp since then we will have page where we can see all prev orders and ingredients etc.
+												 ->
+												build controls ->
+																 list of individaul build components
+
+																 order button
+												preview of burger -> 
+																	list of individual ingedrients comp
+
+
+												modal to checkout -> 
+																	wrapper comp

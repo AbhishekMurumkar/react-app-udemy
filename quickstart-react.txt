@@ -83,4 +83,10 @@ TWO WAY BINDING IN REACT
 		Ex: like background-color must be written as backgroundColor
 	2. create a new css file and import it at starting of js file
 
+==============================================================================
+Note: 
+Always place the 
+ -> components has states if theyre built with class or having the useState(), then place them in container. These are called as statefull components
+ -> remaining are placed in components folders. These are called as Stateless components
+  
 Continuation Modules.txt

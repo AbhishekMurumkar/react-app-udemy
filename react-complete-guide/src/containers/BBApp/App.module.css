@@ -1,3 +1,23 @@
+.App h1{
+  text-align: center;
+  margin-top: 65px;
+}
+@media (max-width:500px){
+  .App h1{
+    font-size:20px;
+    margin-top:55px;
+  }
+}
+/*.App button {
+    color: #fff;
+    padding: 10px;
+    border: 1px dashed #008000;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 600;
+    font-family: inherit;
+}
+*/
 
 /*
 .App-logo {
