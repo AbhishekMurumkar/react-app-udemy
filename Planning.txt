@@ -65,3 +65,6 @@ App->
 
 												modal to checkout -> 
 																	wrapper comp
+
+
+contd: http-ajax.txt

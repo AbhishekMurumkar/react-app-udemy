@@ -1,0 +1,56 @@
+-> re-render parts of page based on paths
+->we need special router package called:
+->It does:
+1) parses url
+2) read current configuration/current page or path
+3) render/load respective JSX element based on url
+
+setting up router package:
+npm install --save react-router react-router-dom
+
+Note: react-router vs react-router-dom
+We installed both react-router  and react-router-dom . Technically, only react-router-dom  is required for web development. It wraps react-router  and therefore uses it as a dependency. We don't need to install react-router  on our own for it to work. You can omit this installation step, I left it in there for historic reasons and because I like to emphasize that the main package is named react-router. If you ever search for assistance, you probably want to search for "react router" - that's the name of the package.
+
+
+// BrowserRouter is the router implementation for HTML5 browsers (vs Native).this is the parent component that is used to store all of your <Route> components. 
+// Link is your replacement for anchor tags.
+// Route is the conditionally shown component based on matching a path to a URL.
+// Switch returns only the first matching route rather than all matching routes.
+// withRouter(Comp) this HOC gives ability to use route info via parameters
+// NavLink
+
+Route JSX:
+Link JSX:
+
+routing related props:
+due to routing module some props are sent to components by default like
+these props are not shared to child components by default, to do so we need to use the 'withRouter' from react-router-dom (HOC) to pass props to children . Note this is strictly based on the nearest route possible
+
+history:
+    action: "PUSH"
+    block: ƒ block(prompt)
+    createHref: ƒ createHref(location)
+    go: ƒ go(n)
+    goBack: ƒ goBack()
+    goForward: ƒ goForward()
+    length: 50
+    listen: ƒ listen(listener)
+    location: {pathname: "/new-post", search: "", hash: "", state: undefined, key: "4q0wsi"}
+    push: ƒ push(path, state)
+    replace: ƒ replace(path, state)
+
+location:
+    hash: ""
+    pathname: "/"
+    search: ""
+    state: undefined    
+
+match:
+    isExact: true
+    params: {}
+    path: "/"
+    url: "/"
+
+Types of Links:
+1) absolute: always appended to domain
+2) relative: appended to a certain path(this is mostly used to build links or routes based on one link or route).This is done by props.match property
