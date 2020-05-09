@@ -17,7 +17,7 @@ We installed both react-router  and react-router-dom . Technically, only react-r
 // Route is the conditionally shown component based on matching a path to a URL.
 // Switch returns only the first matching route rather than all matching routes.
 // withRouter(Comp) this HOC gives ability to use route info via parameters
-// NavLink
+// NavLink : just a anchor tag with precontrolled class name or can append classnames and styles to it
 
 Route JSX:
 Link JSX:
@@ -54,3 +54,62 @@ match:
 Types of Links:
 1) absolute: always appended to domain
 2) relative: appended to a certain path(this is mostly used to build links or routes based on one link or route).This is done by props.match property
+
+
+building dynamic routes:
+<Route path="/path/:id" ..>..</Route>, where id is the name of the unique id in out database.This id can be accessed in other page or route from props in (componentDidMount() method only)
+
+Note:
+ Routing Params can be checked in the componentDidMount() not in componentDidUpdate()
+
+ But how do you extract search (also referred to as "query") parameters (=> ?something=somevalue  at the end of the URL)? How do you extract the fragment (=> #something  at the end of the URL)?
+
+Query Params:
+You can pass them easily like this:
+
+<Link to="/my-path?start=5">Go to Start</Link> 
+
+or
+
+<Link 
+    to={‌{
+        pathname: '/my-path',
+        search: '?start=5'
+    }}
+    >Go to Start</Link>
+React router makes it easy to get access to the search string: props.location.search .
+
+But that will only give you something like ?start=5 
+
+You probably want to get the key-value pair, without the ?  and the = . Here's a snippet which allows you to easily extract that information:
+
+componentDidMount() {
+    const query = new URLSearchParams(this.props.location.search);
+    for (let param of query.entries()) {
+        console.log(param); // yields ['start', '5']
+    }
+}
+URLSearchParams  is a built-in object, shipping with vanilla JavaScript. It returns an object, which exposes the entries()  method. entries()  returns an Iterator - basically a construct which can be used in a for...of...  loop (as shown above).
+
+When looping through query.entries() , you get arrays where the first element is the key name (e.g. start ) and the second element is the assigned value (e.g. 5 ).
+
+Fragment:
+You can pass it easily like this:
+
+<Link to="/my-path#start-position">Go to Start</Link> 
+
+or
+
+<Link 
+    to={‌{
+        pathname: '/my-path',
+        hash: 'start-position'
+    }}
+    >Go to Start</Link>
+React router makes it easy to extract the fragment. You can simply access props.location.hash .
+
+switch jsx in react-router-dom-> used to load single link when we have similar links
+
+
+---------------------------------------------------------
+NESTED ROUTES:
