@@ -113,3 +113,15 @@ switch jsx in react-router-dom-> used to load single link when we have similar l
 
 ---------------------------------------------------------
 NESTED ROUTES:
+DYNAMIC NESTED ROUTES:
+REDIRECTING REQUESTS:
+CONDITIONAL REDIRECTS:
+push vs replace
+
+NAVIGATION GUARDS:
+Guard: used while authenticating the users
+handling 404 error cases:
+loading route lazily
+=========================================================
+server deployment:
+    setting base path for BrowserRouter

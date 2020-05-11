@@ -1,0 +1,41 @@
+.courses {
+    display: grid;
+    margin: 10px 20px;
+    grid-auto-columns: max-content;
+    grid-template-columns: auto auto auto;
+}
+.courseCard {
+    width: 85%;
+    text-align: center;
+    align-content: center;
+    display: inline-block;
+    margin: 10px 5px;
+    border: 1px solid blueviolet;
+    box-shadow: 7px 5px 10px violet;
+}
+img.courseImg {
+    width: 100%;
+}
+p.courseTitle {
+    text-align: center;
+    text-transform: capitalize;
+    padding: 10px 15px;
+    font-size: 18px;
+    font-weight: 600;
+    height: 100px;
+    overflow: auto;
+}
+.selectedCourse {
+    width: 100%;
+    border: none;
+    background: #ae0000;
+    padding: 10px;
+    color: white;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+}
+.selectedCourse:hover{
+    background-color: #00ad00;
+    color: #000;
+}

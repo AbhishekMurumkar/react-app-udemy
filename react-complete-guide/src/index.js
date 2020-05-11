@@ -2,30 +2,31 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import * as serviceWorker from "./serviceWorker";
-import App from "./containers/BlogApp/App";
-import axios from 'axios';
+import Assignment3 from "./components/Assignment3/Assignment3";
+// import App from "./containers/BlogApp/App";
+// import axios from 'axios';
 
 
-axios.defaults.baseURL="https://jsonplaceholder.typicode.com/";
-axios.defaults.headers.common['Authorization']='abhi';
-axios.defaults.headers.post['Accept']='application/json';
-axios.defaults.headers.post['Content-type']='application/json';
+// axios.defaults.baseURL="https://jsonplaceholder.typicode.com/";
+// axios.defaults.headers.common['Authorization']='abhi';
+// axios.defaults.headers.post['Accept']='application/json';
+// axios.defaults.headers.post['Content-type']='application/json';
 
-axios.interceptors.request.use((request)=>{
-  console.log(request);
-  return request;
-},(err)=>{
-  console.log(err);
-  return Promise.reject(err);
-});
+// axios.interceptors.request.use((request)=>{
+//   console.log(request);
+//   return request;
+// },(err)=>{
+//   console.log(err);
+//   return Promise.reject(err);
+// });
 
-axios.interceptors.response.use((response)=>{
-  console.log(response);
-  return response;
-},(err)=>{
-  console.log(err);
-  return Promise.reject(err);
-})
+// axios.interceptors.response.use((response)=>{
+//   console.log(response);
+//   return response;
+// },(err)=>{
+//   console.log(err);
+//   return Promise.reject(err);
+// })
 // import App from './containers/App/App';
 // import App from "./containers/BBApp/App";
 // import Assignment1 from './components/Assignment1/Assignment1';
@@ -33,11 +34,12 @@ axios.interceptors.response.use((response)=>{
 
 ReactDOM.render(
   <React.StrictMode>
-    <App title="Blog App using react"/>
+    {/* <App title="Blog App using react"/> */}
     {/* <App title='First React App - Person Management'/> */}
     {/* <App title="Welcome to Burger Builder Application with React" /> */}
     {/* <Assignment1 /> */}
     {/* <Assignment2 /> */}
+    <Assignment3 />
   </React.StrictMode>,
   document.getElementById("root")
 );

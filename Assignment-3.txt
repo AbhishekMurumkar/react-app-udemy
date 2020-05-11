@@ -1,0 +1,15 @@
+1) Add routes to load "Users" and "Courses" on different pages(by entering url,without links)
+2) add a simple nav with two links
+                        ->leading to Users
+                        ->leading to Courses
+                        
+3)make courses in "Courses" clickable by adding a link and load "Course" component in place of "Courses" component (without passing any data for now)
+
+4)pass the course id to "Course" page and output it here\
+5)pass the course title to "Course" page (as param or score bonus by passing via query params)
+
+6)load the "Course" component as a nested component of "Courses"
+
+7)add a 404 error page and render it for any furthur unknown routes
+
+8)redirect request "/all-courses" to "/courses"
