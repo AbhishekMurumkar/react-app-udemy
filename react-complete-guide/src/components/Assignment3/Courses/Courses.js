@@ -94,13 +94,14 @@ const Courses = (props) => {
   });
   return (
     <div className="coursesContent">
-      <p style={{ textAlign: "center" }}>In Courses Component</p>
-      <div className="courses">{coursesComp}</div>
-      <Route
+            <Route
         path={props.match.url + "/course/:id"}
         exact
         component={Course}
       ></Route>
+      <p style={{ textAlign: "center" }}>In Courses Component</p>
+      <div className="courses">{coursesComp}</div>
+
     </div>
   );
 };

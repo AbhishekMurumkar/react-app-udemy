@@ -16,7 +16,7 @@
 	}
 }
 
-@media (min-width: 420px) and (max-width: 999px){
+@media (min-width: 499px) and (max-width: 999px){
 	.Burger{
 		width: 350px;
 		height: 330px;
@@ -24,7 +24,7 @@
 }
 @media (max-width: 499px){
 	.Burger{
-		width: 350px;
+		max-width: 350px;
 		height: 200px;
 	}
 }

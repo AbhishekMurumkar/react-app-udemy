@@ -1,0 +1,13 @@
+.Order{
+    width:60%;
+    border:1px solid #ccc;
+    box-sizing: border-box;
+    padding: 10px;
+    margin: 10px auto;
+    box-shadow: 0 2px 3px #ccc;
+}
+
+.Order h3{
+    text-align: center;
+    color: chocolate;
+}

@@ -125,3 +125,6 @@ loading route lazily
 =========================================================
 server deployment:
     setting base path for BrowserRouter
+
+
+contd. Forms&validations

@@ -26,6 +26,8 @@ class Burgerbuilder extends Component {
     };
   }
   componentDidMount() {
+    console.log("[BurgerBuilder.js] componentDidMount");
+    console.log(this.props);
     this.burgerBuilder=<Spinner/>
     setTimeout(() => {
       axios
@@ -93,34 +95,18 @@ class Burgerbuilder extends Component {
     this.setState({ purchasing: false });
   };
   purchaseContinueHandler = () => {
-    // alert("Continuing your delicious order");
-    this.setState({ loading: true });
-    const order = {
-      ingredients: this.state.ingredients,
-      price: this.state.totalPrice.toFixed(2),
-      customer: {
-        name: "abhi",
-        phone: "9876543210",
-        email: "a@b.com",
-        address: {
-          area: "dsnr",
-          city: "hyderabad",
-          country: "india",
-          zipcode: 50060,
-        },
-      },
-    };
-    //posting the orders json to firebase
-    axios
-      .post("/orders.json", order)
-      .then((response) => {
-        console.log(response);
-        this.setState({ loading: false, purchasing: false });
-      })
-      .catch((err) => {
-        console.log(err);
-        this.setState({ loading: false, purchasing: false });
-      });
+    // this.props.location.state = this.state.ingredients;
+    const queryParams=[];
+    for(let i in this.state.ingredients){
+      // console.log(encodeURIComponent(i))
+      queryParams.push(encodeURIComponent(i)+"="+encodeURIComponent(this.state.ingredients[i]))
+    }
+    queryParams.push('price='+this.state.totalPrice.toFixed(2))
+    const query = queryParams.join('&')
+    this.props.history.push({
+      pathname:"/checkout",
+      search:"?"+query
+    });
   };
   render() {
 

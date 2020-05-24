@@ -1,0 +1,33 @@
+Redux : THis is third party and Core Module, used because the state management can be difficult in more complex projects
+        This is independent of react
+
+Understanding state:
+    State is (ingredients added to burger,information added by user,data of burger and user stored in server,is modal open, is backdrop open,list of blog posts etc)in all the mentioned examples state linked to component wise.
+
+Redux Actions for handling Complexity of state management:
+    ->used instead of using route query params.
+    ->used when we need state of one component into another which are way more far from each other.
+    ->used as state, but with a global variable which can be accessed anywhere from the application.
+
+Redux Flow:
+->central place for state management
+->Stores application state
+
+1) Here when component want to change the redux state it must
+    1.1: throw a dispatch(message)
+    1.2: with certain "Action" name and with "Payload"(the data it wants to change)(Note:Action is just a package)
+2)Upon receiving, it reaches to 
+    Reducers = Multiple actions can lead to multiple reducers(object) where each receive the action data and update state.These reducers tend to work together for multiple request and atlast form a single reducer to change the global state of applications.
+    Thus here there should be only synchronous code of executions is allowed, no HTTP requests.
+3)Lastly one reducer updates the central state of application
+4)Thus to respond to the changed made in the central state we need to have triggers,
+5)These are called subscriptions which implement change as soon as trigger has notified to them.For that our component need to subscribe to changes
+
+see Redux.png,learing-redux.pdf
+
+Setting Up Reducers and Stores:
+1) install redux : npm install --save redux
+2) Since redux is a standalone application-> create a new file called "redux-basics.js" along side of package.json to run it with node
+3)see that files for more content
+
+Connecting the Redux to react application:

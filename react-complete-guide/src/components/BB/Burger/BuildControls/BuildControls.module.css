@@ -55,4 +55,10 @@
     .BuildControls h2{
         margin:5px;
     }
+    .BuildControls{
+        display: inline-block !important;
+    }
+    .OrderButton{
+        width:100%
+    }
 }

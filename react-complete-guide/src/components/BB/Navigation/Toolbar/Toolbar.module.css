@@ -20,6 +20,8 @@
 
 @media (max-width: 500px){
 	.Toolbar nav{display: none;}
+	.Toolbar{z-index: 640;}
+
 }
 
 .Logo{

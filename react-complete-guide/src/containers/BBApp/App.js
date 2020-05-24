@@ -3,6 +3,9 @@ import { Component } from "react";
 import styles from "./App.module.css";
 import Layout from "./Layout/Layout";
 import Burgerbuilder from "./Burgerbuilder/Burgerbuilder";
+import Checkout from "./Checkout/Checkout";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import Orders from "./Orders/Orders";
 
 class App extends Component {
   // state={
@@ -15,13 +18,21 @@ class App extends Component {
   // }
   render() {
     return (
-      <div className={styles.App}>
-        <h1>{this.props.title}</h1>
-        <Layout>
-          <Burgerbuilder />
-          {/* {this.state.show ? <Burgerbuilder /> : null} */}
-        </Layout>
-      </div>
+      <BrowserRouter>
+        <div className={styles.App}>
+          <h1>{this.props.title}</h1>
+          <Layout>
+            {/* <Burgerbuilder /> */}
+            {/* {this.state.show ? <Burgerbuilder /> : null} */}
+            {/* <Checkout/> */}
+            <Switch>
+              <Route path="/checkout" component={Checkout}></Route>
+              <Route path="/orders" component={Orders}></Route>
+              <Route path="/" component={Burgerbuilder}></Route>
+            </Switch>
+          </Layout>
+        </div>
+      </BrowserRouter>
     );
   }
 }

@@ -3,6 +3,8 @@ import BurgerIngredient from "./BurgerIngredient/BurgerIngredient";
 import burgerStyles from "./Burger.module.css";
 
 const burger = (props) => {
+  // console.log("[Burger.js] ");
+  // console.log(props);
   let transformedIngredients = Object.keys(props.ingredients)
     .map((ingredientName) => {
       //here for each type we are simply returning empty array with values present in value of ingredientName of ingredients prop

@@ -3,6 +3,8 @@ import styles from './Toolbar.module.css';
 import Logo from "../../UI/Logo/Logo";
 import NavigationItems from "../../Navigation/NavigationItems/NavigationItems";
 import DrawerToggle from "../SideDrawer/DrawerToggle/DrawerToggle";
+
+
 const Toolbar=(props)=>(
 	<header className={styles.Toolbar}>
 		{/*<div onClick={props.openSidebar}>Menu</div>*/}

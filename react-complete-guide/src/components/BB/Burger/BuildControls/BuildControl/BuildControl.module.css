@@ -54,3 +54,17 @@
     background-color: #99703F;
     color: white;
 }
+
+@media(max-width:300px){
+    .BuildControl{
+        display: inline;
+    }
+    .BuildControl .Label{
+        margin: 5px auto;
+    }
+    .BuildControl .Less,.BuildControl .More{
+        width: 80%;
+        margin:5px auto;
+    }
+
+}
