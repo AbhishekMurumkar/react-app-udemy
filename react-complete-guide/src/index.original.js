@@ -29,9 +29,16 @@ import * as serviceWorker from "./serviceWorker";
 //   return Promise.reject(err);
 // })
 // import App from './containers/App/App';
-// import App from "./containers/BBApp/App";
+import App from "./containers/BBApp/App";
 // import Assignment1 from './components/Assignment1/Assignment1';
 // import Assignment2 from './components/Assignment2/Assignment2';
+// import Assignment5 from './containers/Assignment5/Assignment5';
+
+// NOte
+// NOte
+// in order to use redux application from lecture:section 14 use index.redux.js
+// NOte
+// NOte
 
 
 
@@ -39,11 +46,12 @@ ReactDOM.render(
   <React.StrictMode>
     {/* <App title="Blog App using react"/> */}
     {/* <App title='First React App - Person Management'/> */}
-    {/* <App title="Welcome to Burger Builder Application with React" /> */}
+    <App title="Welcome to Burger Builder Application with React" />
     {/* <Assignment1 /> */}
     {/* <Assignment2 /> */}
     {/* <Assignment3 /> */}
-    <App/>
+    {/* <App/> */}
+    {/* <Assignment5></Assignment5> */}
   </React.StrictMode>,
   document.getElementById("root")
 );

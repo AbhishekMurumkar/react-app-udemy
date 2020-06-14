@@ -10,6 +10,7 @@ const controls = [
 ];
 
 const BuildControls = (props) => {
+	// console.log("[BuildControls.js] component");
 	// console.log(props)
 	return (
 		<div className={styles.BuildControls}>
