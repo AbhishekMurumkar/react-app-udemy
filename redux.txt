@@ -225,3 +225,68 @@ Using  redux Dev tools:
 ===============================================
 Using Asynchronous code:
 -> we need action creators:Its is function that returns a action
+Ex.
+export const decrementCounter = () => {
+  return {
+    type: DECREMENT
+  }
+}
+implementing / calling an action 
+import decrementCounter from '..../actions';
+dispatch(decrementCounter());
+-> decrementCounter is a function when called return a action, which is a json.
+-> in dispatch method we calling the function 
+
+Now coming to the Asynchronous execution, we are using redux-thunks which is a middle which supports of handling the async code
+In this module we tend to return a function(this function does contain the code of executing the dispatch of an action) which doesnt return action or json like above ,
+but it returns a function which eventually executes the async code.
+
+In redux-thunk package,
+thunk = thunk is added in the middleware.
+------------------------------------
+export const decrementCounter = () =>{
+    return (dispatch) => { //returning function
+        setTimeout( ()=>{ //async code
+            dispatch({
+                type:DECREMENT
+            })
+        } , 2000);
+    }
+}
+
+EXPLANATION : WHEN WE USE THUNK, IT ACTS AS MIDDLE WARE AND WATCHES OUR ACTIONS , WHEN WE COME ACROSS Asynchronous CODE THEN THUNKS TENDS TO DELETE THE synchronous CALL AND TRIES TO executes THE Asynchronous CODE.
+
+RESTRUCTURING ACTIONS :
+-> Write the action as files structure made for component, every component may have a action file which access set of dispatch functions
+-> we need to combine set of action files into one by :
+indexActions.js
+export {} from 'action1'; 
+export {} from 'action2'; 
+.
+.
+
+-> extend the indexAction in the required component , import * as actionTypes from "../.././indexAction"; and implement required action from that indexAction imports.
+
+When you are editing the data between component to store, you can do it in 
+1. action creator: 
+    => can run async code
+    => can prepare data to reducer
+2. reducer: 
+    => can run pure, sync code
+    => reducers used to update the state
+
+Note : whenever you need to use the state to access the state variable you can access them in action creators by adding the second paramter in the function present in the async code.
+
+Ex.
+export const decrementCounter = () =>{
+    return (dispatch,getState) => { //returning function
+        setTimeout( ()=>{ //async code
+            const counterCount = getState().counter;
+            dispatch({
+                type:DECREMENT
+            })
+        } , 2000);
+    }
+}
+
+Using utilites:
