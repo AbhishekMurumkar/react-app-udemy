@@ -1,9 +1,18 @@
 import * as actionNames from "../actions/MyActions";
+import {updateObject} from "../MyUtilities";
 
 const initialState = {
     results: []
 }
 
+const deleteResult = (newState,action)=>{
+    console.log(newState,action);
+    let updatedArr = newState.results.filter((res) => {
+        return res.id !== action.elementId
+    });
+    console.log(updatedArr);
+    return updateObject(newState,{results:updatedArr});
+}
 
 const myResultsReducer = (state = initialState, action) => {
     let newState = { ...state };
@@ -11,18 +20,18 @@ const myResultsReducer = (state = initialState, action) => {
     //implementing actions
     switch (action.type) {
         case actionNames.STORE_RESULT:
-            newState.results = newState.results.concat({
-                id: new Date().getTime(),
-                value: action.storeNumber
-            });
-            break;
+            return updateObject(state,{results:state.results.concat({ id:new Date().getTime(), value:action.storeNumber })});
+        //     newState.results = newState.results.concat({
+        //         id: new Date().getTime(),
+        //         value: action.storeNumber
+        //     });
+        //     break;
         case actionNames.DELETE_RESULT:
-            console.log(action);
-            let updatedArr = newState.results.filter((res) => {
-                return res.id !== action.elementId
-            });
-            newState.results = updatedArr;
-            break;
+            return deleteResult(newState,action);
+            // console.log(action);
+            // return updateObject(state,{results:updatedArr});
+            // newState.results = updatedArr;
+            // break;
         default:
             return state;
     }

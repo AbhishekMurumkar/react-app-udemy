@@ -1,3 +1,5 @@
+import * as actionTypes from "../BBActions/BBActionTypes";
+
 const INGREDIENT_PRICES = {
     salad: 1,
     cheese: 2,
@@ -13,7 +15,7 @@ const initalState = {
 const bbreducer = (state = initalState, action) => {
     let newState = { ...state };
     switch (action.type) {
-        case "INITIALIZE_ING":
+        case actionTypes.INITIALIZE_ING:
             console.log(action);
             newState.totalPrice = 4;
             newState.ingredients = action.initial;
@@ -26,12 +28,14 @@ const bbreducer = (state = initalState, action) => {
             }
             newState.totalPrice = newState.totalPrice + cost;
             break;
-        case "ADD_ING":
+        
+            case actionTypes.ADD_ING:
             newState.ingredients[action.IngredientType]++;
             newState.totalPrice =
                 newState.totalPrice + INGREDIENT_PRICES[action.IngredientType];
             break;
-        case "REMOVE_ING":
+
+        case actionTypes.REMOVE_ING:
             newState.ingredients[action.IngredientType]--;
             newState.totalPrice =
                 newState.totalPrice - INGREDIENT_PRICES[action.IngredientType];

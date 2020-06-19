@@ -18,6 +18,7 @@ export const incrementCounter = () => {
   }
 };
 
+// action creators, synchronous
 export const decrementCounter = () => {
   return {
     type: DECREMENT
@@ -36,7 +37,7 @@ export const addToCounter = (payload) => {
 
 export const subFromCounter = (payload) => {
   return {
-    type: ADD,
+    type: SUB,
     payload: {
       value: payload
     }

@@ -4,11 +4,13 @@ import CounterControl from "../../../components/ReduxComponents/CounterControl/C
 import CounterOutput from "../../../components/ReduxComponents/CounterOutput/CounterOutput";
 import * as actionTypes from "../../../store/actions/MyActions";
 
-class Counter extends Component {
+
+class Counter extends Component { 
 
   render() {
     console.log(this.props);
     return (<div>
+      {/* <h1>In the redux application part</h1> */}
       {/* <CounterOutput value={this.state.counter} /> */}
       <CounterOutput value={this.props.myCounterAtChild}/> {/* <CounterControl label="Increment" clicked={() => this.counterChangedHandler( 'inc' )} /> */}
       <CounterControl label="Increment" clicked={this.props.onIncrementMyCounter}/> {/* <CounterControl label="Decrement" clicked={() => this.counterChangedHandler( 'dec' )}  /> */}
@@ -50,12 +52,12 @@ const mapDispatchToPros = (dispatch)=>{
     onIncrementMyCounter: () => dispatch(actionTypes.incrementCounter()),
     onDecrementMyCounter: () => dispatch(actionTypes.decrementCounter()),
     onAddMyCounter:       () => dispatch(actionTypes.addToCounter(5)),
-    onSubMyCounter:       () => dispatch({type: actionTypes.subFromCounter(5)}),
+    onSubMyCounter:       () => dispatch(actionTypes.subFromCounter(5)),
     onStoreResult:        (currentCounter) => {
-      return dispatch({type: actionTypes.storeResult(currentCounter)});
+      return dispatch(actionTypes.storeResult(currentCounter));
     },
     onDeleteResult:       (id) => {
-      return dispatch({type: actionTypes.deleteStoredNumber()});
+      return dispatch(actionTypes.deleteStoredNumber(id));
     }
   };
 };
