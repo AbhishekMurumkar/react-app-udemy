@@ -28,8 +28,8 @@ const bbreducer = (state = initalState, action) => {
             }
             newState.totalPrice = newState.totalPrice + cost;
             break;
-        
-            case actionTypes.ADD_ING:
+
+        case actionTypes.ADD_ING:
             newState.ingredients[action.IngredientType]++;
             newState.totalPrice =
                 newState.totalPrice + INGREDIENT_PRICES[action.IngredientType];

@@ -48,7 +48,7 @@
 //             purchasable:((this.state.totalPrice+cost)>4)?true:false 
 //           });
 //           // console.log(this.state.ingredients)
-          
+
 //         })
 //         .catch((err) => {
 //           console.log(err);
@@ -157,7 +157,7 @@
 //           {orderSummary}
 //         </Modal>
 //         {this.burgerBuilder}
-        
+
 //       </Aux>
 //     );
 //   }
@@ -173,12 +173,13 @@ import Burger from "../../../components/BB/Burger/Burger";
 import BuildControls from "../../../components/BB/Burger/BuildControls/BuildControls";
 import Modal from "../../../components/BB/UI/Modal/Modal";
 import OrderSummary from "../../../components/BB/Burger/OrderSummary/OrderSummary";
-import axios from "../../../axios-orders";
+// import axios from "../../../axios-orders";
 import Spinner from "../../../components/BB/UI/Spinner/Spinner";
 import WithErrorHandler from "../../../higher-order-components/WithErroHandler/WithErrorHandler";
+import { connect } from "react-redux";
 
-import {connect} from "react-redux";
-
+//now importing the actions types
+import * as burgerBuilderActions from "../../../store/BBStore/BBActions/index"
 class Burgerbuilder extends Component {
   burgerBuilder;
   constructor(props) {
@@ -190,20 +191,20 @@ class Burgerbuilder extends Component {
   }
   componentDidMount() {
     console.log("[BurgerBuilder.js] componentDidMount");
-    this.burgerBuilder=<Spinner/>
-    setTimeout(() => {
-      axios
-        .get("https://reactburgerbuilder-8b06e.firebaseio.com/ingredients.json")
-        .then((resp) => {
-          console.log("got ingredients");
-          this.props.initializeIngredients.call(this,resp.data);
-          this.setState({ purchasable:(this.props.totalPrice > 4)?true:false })
-        })
-        .catch((err) => {
-          console.log(err);
-          this.burgerBuilder = <p style={{textAlign:"center"}}>Ingredients cant be loaded.Server error</p>
-        });
-    }, 1500);
+    this.burgerBuilder = <Spinner />
+    // setTimeout(() => {
+    //   axios
+    //     .get("https://reactburgerbuilder-8b06e.firebaseio.com/ingredients.json")
+    //     .then((resp) => {
+    //       console.log("got ingredients");
+    //       this.props.initializeIngredients.call(this, resp.data);
+    //       this.setState({ purchasable: (this.props.totalPrice > 4) ? true : false })
+    //     })
+    //     .catch((err) => {
+    //       console.log(err);
+    //       this.burgerBuilder = <p style={{ textAlign: "center" }}>Ingredients cant be loaded.Server error</p>
+    //     });
+    // }, 1500);
   }
   // addIngredientHandler = (type) => {
   //   let count =
@@ -245,16 +246,16 @@ class Burgerbuilder extends Component {
   };
   purchaseContinueHandler = () => {
     // this.props.location.state = this.state.ingredients;
-    const queryParams=[];
-    for(let i in this.state.ingredients){
+    const queryParams = [];
+    for (let i in this.state.ingredients) {
       // console.log(encodeURIComponent(i))
-      queryParams.push(encodeURIComponent(i)+"="+encodeURIComponent(this.state.ingredients[i]))
+      queryParams.push(encodeURIComponent(i) + "=" + encodeURIComponent(this.state.ingredients[i]))
     }
-    queryParams.push('price='+this.props.totalPrice.toFixed(2))
+    queryParams.push('price=' + this.props.totalPrice.toFixed(2))
     const query = queryParams.join('&')
     this.props.history.push({
-      pathname:"/checkout",
-      search:"?"+query
+      pathname: "/checkout",
+      search: "?" + query
     });
   };
 
@@ -277,7 +278,7 @@ class Burgerbuilder extends Component {
             // ingredientRemoved={this.removeIngredientHandler}
             buttonsStatus={buttonInfo}
             cost={this.props.totalPrice}
-            checkoutStatus={(this.props.totalPrice > 4)?false:true}
+            checkoutStatus={(this.props.totalPrice > 4) ? false : true}
             ordered={this.purchasingHandler}
           />
         </Aux>
@@ -304,22 +305,22 @@ class Burgerbuilder extends Component {
           {orderSummary}
         </Modal>
         {this.burgerBuilder}
-        
+
       </Aux>
     );
   }
 }
-const mapStateToProps=(state)=>{
+const mapStateToProps = (state) => {
   return {
-    ingredients:state.ingredients,
-    totalPrice:state.totalPrice
+    ingredients: state.ingredients,
+    totalPrice: state.totalPrice
   }
 };
-const mapDispatchToProps=(dispatch)=>{
-  return{
-    initializeIngredients:(initialData)=>dispatch({type:"INITIALIZE_ING",initial:initialData}),
-    addIngredient:(type)=>dispatch({type:"ADD_ING",IngredientType:type}),
-    removeIngredient:(type)=>dispatch({type:"REMOVE_ING",IngredientType:type}),
+const mapDispatchToProps = (dispatch) => {
+  return {
+    initializeIngredients: (initialData) => dispatch(burgerBuilderActions.initializeIngredients(initialData)),
+    addIngredient: (type) => dispatch(burgerBuilderActions.addIngredient(type)),
+    removeIngredient: (type) => dispatch(burgerBuilderActions.removeIngredient(type)),
   }
 }
-export default connect(mapStateToProps,mapDispatchToProps)(WithErrorHandler(Burgerbuilder, axios));
+export default connect(mapStateToProps, mapDispatchToProps)(WithErrorHandler(Burgerbuilder, axios));
