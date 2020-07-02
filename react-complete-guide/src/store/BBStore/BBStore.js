@@ -1,6 +1,6 @@
 import {createStore,} from 'redux';
 // import BBReducer from './BBReducer/BBReducer';
-import BBReducer from "./BBReducer/BBReducer";
+// import BBReducer from "./reducers/burgerbuilder";
 // const BBStore = createStore(BBReducer);
 
 // for middleware
@@ -8,6 +8,14 @@ import { applyMiddleware,compose } from "redux";
 // for execution of async code
 import thunk from 'redux-thunk';
 
+import {combineReducers} from "redux";
+import burgerBuilderReducer from "./reducers/burgerbuilder";
+import orderReducer from "./reducers/orders";
+
+const rootReducer  = combineReducers({
+    burgerBuilder : burgerBuilderReducer,
+    orders :orderReducer
+})
 //adding dev tools.
 // simple redux dev tool
 // synchronous execution
@@ -17,7 +25,7 @@ import thunk from 'redux-thunk';
 // inorder to let inject store in dev tools of browser we need to do following
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 // for Asynchronous execution via adding middleware
-const BBStore = createStore(BBReducer, composeEnhancers(
+const BBStore = createStore(rootReducer, composeEnhancers(
     applyMiddleware(thunk)
 ));
 export default BBStore;

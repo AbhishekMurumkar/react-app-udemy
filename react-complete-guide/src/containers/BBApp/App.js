@@ -1,15 +1,16 @@
 import React from "react";
 import { Component } from "react";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { Provider } from "react-redux";
+
 import styles from "./App.module.css";
 import Layout from "./Layout/Layout";
 import Burgerbuilder from "./Burgerbuilder/Burgerbuilder";
 import Checkout from "./Checkout/Checkout";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Orders from "./Orders/Orders";
-
+import Auth from "./Auth/Auth";
 //implementing store
 import BBStore from "../../store/BBStore/BBStore";
-import { Provider } from "react-redux";
 
 class App extends Component {
   // state={
@@ -33,6 +34,7 @@ class App extends Component {
               <Switch>
                 <Route path="/checkout" component={Checkout}></Route>
                 <Route path="/orders" component={Orders}></Route>
+                <Route path="/auth" component={Auth}></Route>
                 <Route path="/" component={Burgerbuilder}></Route>
               </Switch>
             </Layout>
