@@ -1,17 +1,17 @@
-import React,{Component} from "react";
+import React, { Component } from "react";
 import Order from "../../../components/BB/Order/Order";
 import axios from "../../../axios-orders";
 import Spinner from "../../../components/BB/UI/Spinner/Spinner";
 import withErrorHandler from "../../../higher-order-components/WithErroHandler/WithErrorHandler";
 import * as actions from "../../../store/BBStore/actions/index";
-import {connect} from "react-redux";
+import { connect } from "react-redux";
 
-class Orders extends Component{
+class Orders extends Component {
     // state={
     //     orders:[],
     //     loading:true
     // }
-    componentDidMount(){
+    componentDidMount() {
         // axios.get("/orders.json").then((resp)=>{
         //     // console.log(resp.data)
         //     var neworders=[];
@@ -25,40 +25,43 @@ class Orders extends Component{
         //     console.log(err)
         //     this.setState({loading:false})
         // })
-        this.props.onFetchOrders();
+        this.props.onFetchOrders(this.props.authToken);
     }
-    render(){
+    render() {
         // console.log('[Orders.js - rendering]');console.log(this.props);
-        let ui=null;
+        let ui = null;
         // if(this.state.loading){
-        if(this.props.loading){
-            ui=<Spinner />
-        }else{
+        if (this.props.loading) {
+            ui = <Spinner />
+        } else if(this.props.error){
+            ui=<p>Unable to fetch ordes from server</p>;
+        }else {
             // console.log(this.state.orders)
             // ui=this.state.orders.map((e)=>{
-            ui=this.props.orders.map((e)=>{
+            ui = this.props.orders.map((e) => {
                 // console.log(index)
-                return (<Order key={e.id} {...e}/>) 
+                return (<Order key={e.id} {...e} />)
             })
         }
-        return(
-        <div>
-            {ui}
-        </div>
+        return (
+            <div>
+                {ui}
+            </div>
         );
     }
 }
 
-const mapStateToProps = (state)=>{
+const mapStateToProps = (state) => {
     return {
-        error:state.orders.error,
-        loading:state.orders.loading,
-        orders:state.orders.orders
+        error: state.orders.error,
+        loading: state.orders.loading,
+        orders: state.orders.orders,
+        authToken: state.authentication.token
     }
 }
-const mapDispatchToProps = (dispatch)=>{
-    return{
-        onFetchOrders : ()=>dispatch(actions.fetchOrders())
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onFetchOrders: (token) => dispatch(actions.fetchOrders(token))
     }
 }
-export default connect(mapStateToProps,mapDispatchToProps)(withErrorHandler(Orders,axios));
+export default connect(mapStateToProps, mapDispatchToProps)(withErrorHandler(Orders, axios));

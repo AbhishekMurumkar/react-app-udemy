@@ -365,8 +365,8 @@ class ContactData extends Component {
       price: this.props.totalPrice,
       orderData: form_data,
     };
-    console.log(form_data);
-    console.log(order);
+    // console.log(form_data);
+    // console.log(order);
     //posting the orders json to firebase
     // axios
     //   .post("/orders.json", order)
@@ -381,7 +381,7 @@ class ContactData extends Component {
     //   });
 
     // now posting the axios code with the help of redux
-    this.props.onOrderStart(order);
+    this.props.onOrderStart(order,this.props.token);
   };
 
   inputChangeHandler = (event, inputIdentifier) => {
@@ -427,8 +427,8 @@ class ContactData extends Component {
   };
 
   render() {
-    console.log("[ContactData.js Rendering]");
-    console.log(this.props);
+    // console.log("[ContactData.js Rendering]");
+    // console.log(this.props);
 
     let form = null;
     // if (this.state.loading) {
@@ -480,13 +480,14 @@ const mapStateToProps = (state) => {
     ingredients: state.burgerBuilder.ingredients,
     totalPrice: state.burgerBuilder.totalPrice,
     loading: state.orders.loading,
+    token:state.authentication.token
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onOrderStart: (orderData) => {
-      dispatch(actionTypes.purchaseBurger(orderData));
+    onOrderStart: (orderData,token) => {
+      dispatch(actionTypes.purchaseBurger(orderData,token));
     },
   };
 };

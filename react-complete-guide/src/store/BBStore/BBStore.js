@@ -11,11 +11,13 @@ import thunk from 'redux-thunk';
 import {combineReducers} from "redux";
 import burgerBuilderReducer from "./reducers/burgerbuilder";
 import orderReducer from "./reducers/orders";
+import authReducer from "./reducers/auth";
 
 const rootReducer  = combineReducers({
     burgerBuilder : burgerBuilderReducer,
-    orders :orderReducer
-})
+    orders :orderReducer,
+    authentication: authReducer
+});
 //adding dev tools.
 // simple redux dev tool
 // synchronous execution

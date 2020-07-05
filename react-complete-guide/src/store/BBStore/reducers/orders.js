@@ -5,9 +5,11 @@ const initialState = {
   loading: false,
   purchased:false,
 };
+
 const orderReducer = (state = initialState, action) => {
   let newState = { ...state };
   switch (action.type) {
+    
     case actionTypes.PURCHASE_BURGER_SUCCESS:
       const newOrder = {
         ...action.orderData,
@@ -23,6 +25,7 @@ const orderReducer = (state = initialState, action) => {
       newState.loading = false;
       newState.error = false;
       break;
+
     case actionTypes.PURCHASE_INIT:
         newState.purchased = false;
         break;
@@ -35,6 +38,7 @@ const orderReducer = (state = initialState, action) => {
     case actionTypes.PURCHASE_BURGER_FAILED:
     case actionTypes.FETCH_ORDERS_FAILED:
       newState.loading = false;
+      newState.error=action.error.message;
       break;
 
     default:

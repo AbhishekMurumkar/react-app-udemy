@@ -9,6 +9,7 @@ import Burgerbuilder from "./Burgerbuilder/Burgerbuilder";
 import Checkout from "./Checkout/Checkout";
 import Orders from "./Orders/Orders";
 import Auth from "./Auth/Auth";
+import Logout from "./Auth/Logout/Logout";
 //implementing store
 import BBStore from "../../store/BBStore/BBStore";
 
@@ -35,6 +36,7 @@ class App extends Component {
                 <Route path="/checkout" component={Checkout}></Route>
                 <Route path="/orders" component={Orders}></Route>
                 <Route path="/auth" component={Auth}></Route>
+                <Route path="/logout" component={Logout}></Route>
                 <Route path="/" component={Burgerbuilder}></Route>
               </Switch>
             </Layout>

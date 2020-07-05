@@ -23,7 +23,7 @@ const BuildControls = (props) => {
 					remove={() => { props.ingredientRemoved(e.type) }}
 					status={props.buttonsStatus[e.type]} />
 			})}
-			<button className={styles.OrderButton} disabled={props.checkoutStatus} onClick={props.ordered}>Checkout</button>
+			<button className={styles.OrderButton} disabled={props.checkoutStatus} onClick={props.ordered}>{(props.isAuthenticated)?"Checkout":"Sign Up To Continue to purchase your order"}</button>
 		</div>
 	);
 }

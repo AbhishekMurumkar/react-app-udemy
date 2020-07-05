@@ -4,6 +4,7 @@ import Aux from "../../../higher-order-components/BBAux";
 import styles from "./Layout.module.css";
 import Toolbar from "../../../components/BB/Navigation/Toolbar/Toolbar";
 import SideDrawer from "../../../components/BB/Navigation/SideDrawer/SideDrawer";
+import { connect } from "react-redux";
 
 // const layout = (props)=>{
 // 	return(
@@ -29,8 +30,9 @@ class Layout extends Component {
   render() {
     return (
       <Aux>
-        <Toolbar openSidebar={this.opensideDrawerHandler} />
+        <Toolbar isAuth={this.props.isAuthenticated} openSidebar={this.opensideDrawerHandler} />
         <SideDrawer
+          isAuth={this.props.isAuthenticated}
           status={this.state.showSideDrawer}
           closed={this.sideDrawerClosedHandler}
         />
@@ -40,4 +42,14 @@ class Layout extends Component {
     );
   }
 }
-export default Layout;
+const mapStateToProps = (state)=>{
+  return {
+    isAuthenticated: (state.authentication.token == null)?false:true,
+  }
+}
+const mapDispatchToProps = (dispatch)=>{
+  return{
+
+  }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(Layout);

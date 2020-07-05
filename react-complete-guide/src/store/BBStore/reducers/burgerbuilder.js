@@ -11,6 +11,7 @@ const initalState = {
   ingredients: null,
   totalPrice: 4,
   error: false,
+  buidling:false
 };
 
 const bbreducer = (state = initalState, action) => {
@@ -34,15 +35,18 @@ const bbreducer = (state = initalState, action) => {
           cheese:action.ingredients.cheese  
       }
       newState.error = false;
+      newState.buidling = false;
       newState.totalPrice = newState.totalPrice + cost;
       break;
 
     case actionTypes.ADD_ING:
+      newState.buidling=true;
       newState.ingredients[action.IngredientType]++;
       newState.totalPrice = newState.totalPrice + INGREDIENT_PRICES[action.IngredientType];
       break;
 
     case actionTypes.REMOVE_ING:
+      newState.buidling=true;
       newState.ingredients[action.IngredientType]--;
       newState.totalPrice = newState.totalPrice - INGREDIENT_PRICES[action.IngredientType];
       break;
@@ -54,7 +58,7 @@ const bbreducer = (state = initalState, action) => {
     default:
       break;
   }
-  console.log(newState);
+  // console.log(newState);
   return newState;
 };
 export default bbreducer;
