@@ -192,8 +192,8 @@ class Burgerbuilder extends Component {
     purchasing: false,
   };
   componentDidMount() {
-    console.log("[BurgerBuilder.js] componentDidMount");
-    console.log(this.props);
+    // console.log("[BurgerBuilder.js] componentDidMount");
+    // console.log(this.props);
     this.burgerBuilder = <Spinner />;
     this.props.initIngredients();
     // setTimeout(() => {
@@ -243,12 +243,14 @@ class Burgerbuilder extends Component {
   //   }
   // };
   purchasingHandler = () => {
-    //now check if a user is authenticated or not 
+    //now check if a user is authenticated or not
     //based on authentication status we need to redirect the user
     if (this.props.isAuthenticated) {
       this.setState({ purchasing: true });
     } else {
+      // console.log("changed the auth redirect path");
       this.props.onSetAuthRedirectPath("/checkout");
+      // console.log(this.props.authRedirectPath);
       this.props.history.push("/auth");
     }
   };
@@ -262,8 +264,8 @@ class Burgerbuilder extends Component {
       // console.log(encodeURIComponent(i))
       queryParams.push(
         encodeURIComponent(i) +
-        "=" +
-        encodeURIComponent(this.state.ingredients[i])
+          "=" +
+          encodeURIComponent(this.state.ingredients[i])
       );
     }
     queryParams.push("price=" + this.props.totalPrice.toFixed(2));
@@ -315,7 +317,7 @@ class Burgerbuilder extends Component {
     if (this.props.loading) {
       orderSummary = <Spinner />;
     }
-    //-----------------------------------------------------
+
     return (
       <Aux>
         <Modal
@@ -334,8 +336,10 @@ const mapStateToProps = (state) => {
     ingredients: state.burgerBuilder.ingredients,
     totalPrice: state.burgerBuilder.totalPrice,
     error: state.burgerBuilder.error,
+    building:state.burgerBuilder.building,
     loading: state.orders.loading,
-    isAuthenticated: state.authentication.token != null
+    isAuthenticated: state.authentication.token != null,
+    authRedirectPath: state.authentication.authRedirectPath,
   };
 };
 const mapDispatchToProps = (dispatch) => {
@@ -346,7 +350,10 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(burgerBuilderActions.add_ingredient(type)),
     removeIngredient: (type) =>
       dispatch(burgerBuilderActions.remove_ingredient(type)),
-    onSetAuthRedirectPath: (path) => dispatch(burgerBuilderActions.setAuthPath(path))
+    onSetAuthRedirectPath: (path) => {
+      // console.log("in changing authredirectpath to " + path);
+      dispatch(burgerBuilderActions.setAuthRedirectPath(path));
+    },
   };
 };
 export default connect(

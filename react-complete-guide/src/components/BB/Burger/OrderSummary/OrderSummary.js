@@ -6,9 +6,9 @@ import { Component } from "react";
 // const OrderSummary = (props) => {
 class OrderSummary extends Component {
 
-	componentDidUpdate(){
-		console.log("Ordersummary updated");
-	}
+	// componentDidUpdate(){
+	// 	console.log("Ordersummary updated");
+	// }
 	// componentWillUpdate(){
 	// 	console.log("Ordersummary will update");
 	// }

@@ -5,27 +5,27 @@ import axios from "../../../axios-orders";
 export const add_ingredient = (ingredientName) => {
   return {
     IngredientType: ingredientName,
-    type: actionTypes.ADD_ING,
+    type          : actionTypes.ADD_ING,
   };
 };
 
 export const remove_ingredient = (ingredientName) => {
   return {
     IngredientType: ingredientName,
-    type: actionTypes.REMOVE_ING,
+    type          : actionTypes.REMOVE_ING,
   };
 };
 
 export const set_Ingredient = (ingredient) => {
   return {
-    type: actionTypes.SET_ING,
+    type       : actionTypes.SET_ING,
     ingredients: ingredient,
   };
 };
 
 export const fetchIngredientFailed = ()=>{
     return {
-        type:actionTypes.FETCH_ING_FAILED
+        type: actionTypes.FETCH_ING_FAILED
     }
 }
 
@@ -36,7 +36,7 @@ export const initIngredient = () => {
       axios
         .get("https://reactburgerbuilder-8b06e.firebaseio.com/ingredients.json")
         .then((resp) => {
-          console.log("got ingredients");
+          // console.log("got ingredients");
           dispatch(set_Ingredient(resp.data));
         //   this.props.initializeIngredients.call(this, resp.data);
         //   this.setState({
@@ -44,7 +44,7 @@ export const initIngredient = () => {
         //   });
         })
         .catch((err) => {
-          console.log(err);
+          // console.log(err);
           dispatch(fetchIngredientFailed());
         //   this.burgerBuilder = (
         //     <p style={{ textAlign: "center" }}>

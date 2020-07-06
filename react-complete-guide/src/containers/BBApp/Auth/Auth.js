@@ -12,33 +12,33 @@ class Auth extends Component {
   state = {
     controls: {
       email: {
-        elementType: "input",
+        elementType  : "input",
         elementConfig: {
-          type: "email",
+          type       : "email",
           placeholder: "Enter your mail",
         },
-        value: "",
+        value     : "",
         validation: {
           required: true,
-          isEmail: true,
+          isEmail : true,
         },
-        valid: false,
-        touched: false,
+        valid         : false,
+        touched       : false,
         invalidMessage: "Enter a valid Email Address",
       },
       password: {
-        elementType: "input",
+        elementType  : "input",
         elementConfig: {
-          type: "password",
+          type       : "password",
           placeholder: "Enter your password",
         },
-        value: "",
+        value     : "",
         validation: {
-          required: true,
+          required : true,
           minLength: 6,
         },
-        valid: false,
-        touched: false,
+        valid         : false,
+        touched       : false,
         invalidMessage: "Enter a valid Password",
       },
     },
@@ -79,11 +79,11 @@ class Auth extends Component {
     }
     if (rules.isEmail) {
       const emailPattern = /^[a-z]+[\w\.\_\d]*@[a-z]+\.[a-z]{2,3}$/;
-      isValid = isValid && emailPattern.test(value);
+            isValid      = isValid && emailPattern.test(value);
     }
     if (rules.isNumeric) {
       const numPattern = /^\d+$/;
-      isValid = isValid && numPattern.test(value);
+            isValid    = isValid && numPattern.test(value);
     }
     return isValid;
   };
@@ -104,11 +104,11 @@ class Auth extends Component {
   };
 
   componentDidMount() {
-    if (
-      !this.props.burgerBuildingStatus &&
-      this.props.authRedirectPath !== "/"
-    ) {
-      //trying to redirect to checkout
+    //resetting path when
+    // 1. we are not building burger
+    // 2. we dont have the authenticated user
+    if (!this.props.burgerBuildingStatus && this.props.authRedirectPath !== '/') {
+      //trying to reset the authRedirect Path
       this.props.onSetAuthRedirectPath();
     }
   }
@@ -116,24 +116,24 @@ class Auth extends Component {
     let formElements = [];
     for (var k in this.state.controls) {
       formElements.push({
-        id: k,
+        id    : k,
         config: this.state.controls[k],
       });
     }
 
     let form = formElements.map((e) => (
       <Input
-        key={e.id}
-        elementType={e.config.elementType}
-        elementConfig={e.config.elementConfig}
-        value={e.config.value}
-        invalid={!e.config.valid}
-        shouldValidate={e.config.validation}
-        changed={(event) => {
+        key            = {e.id}
+        elementType    = {e.config.elementType}
+        elementConfig  = {e.config.elementConfig}
+        value          = {e.config.value}
+        invalid        = {!e.config.valid}
+        shouldValidate = {e.config.validation}
+        changed        = {(event) => {
           this.inputChangeHandler(event, e.id);
         }}
-        touched={e.config.touched}
-        invalidMsg={e.config.invalidMessage}
+        touched    = {e.config.touched}
+        invalidMsg = {e.config.invalidMessage}
       />
     ));
     if (this.props.loading) {
@@ -144,21 +144,21 @@ class Auth extends Component {
       err_msg = <p>{this.props.error.message}</p>;
     }
     let authContent = null;
-
+    // console.log("changing authcontent - "+this.props.isAuthenticated);
     if (this.props.isAuthenticated) {
-      authContent = <Redirect to={this.props.authRedirectPath} />;
+      authContent = <Redirect to = {this.props.authRedirectPath} />;
     } else {
       authContent = (
-        <div className={styles.Auth}>
+        <div className = {styles.Auth}>
           <h2>
             You can Sign {!this.state.switchFormType ? "IN" : "UP"} from here
           </h2>
           <div>{err_msg}</div>
-          <form onSubmit={this.submitHandler}>
+          <form onSubmit = {this.submitHandler}>
             {form}
-            <Button btnType="Success"> Submit </Button>
+            <Button btnType = "Success"> Submit </Button>
           </form>
-          <Button btnType="Default" clicked={this.switchAuthHandler}>
+          <Button btnType = "Default" clicked = {this.switchAuthHandler}>
             Switch to SIGN {this.state.switchFormType ? "IN" : "UP"}
           </Button>
         </div>
@@ -169,19 +169,22 @@ class Auth extends Component {
 }
 
 const matStateToProps = (state) => {
-  return {
-    loading: state.authentication.loading,
-    error: state.authentication.error,
-    isAuthenticated: state.authentication.token != null,
+  let authJson = {
+    loading             : state.authentication.loading,
+    error               : state.authentication.error,
+    isAuthenticated     : state.authentication.token != null,
+    authRedirectPath    : state.authentication.authRedirectPath,
     burgerBuildingStatus: state.burgerBuilder.building,
-    authRedirectPath: state.authentication.authRedirectPath,
   };
+  // console.log("[Auth.js State Props]");
+  // console.log(state);
+  return authJson;
 };
 const mapDispatchToProps = (dispatch) => {
   return {
     onAuth: (email, pass, formType) =>
       dispatch(actionTypes.auth(email, pass, formType)),
-    onSetAuthRedirectPath: () => dispatch(actionTypes.setAuthPath("/")),
+    onSetAuthRedirectPath: () => dispatch(actionTypes.setAuthRedirectPath("/")),
   };
 };
 export default connect(matStateToProps, mapDispatchToProps)(Auth);

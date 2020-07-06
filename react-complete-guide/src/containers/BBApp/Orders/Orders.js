@@ -25,7 +25,7 @@ class Orders extends Component {
         //     console.log(err)
         //     this.setState({loading:false})
         // })
-        this.props.onFetchOrders(this.props.authToken);
+        this.props.onFetchOrders(this.props.authToken,this.props.userToken);
     }
     render() {
         // console.log('[Orders.js - rendering]');console.log(this.props);
@@ -52,16 +52,20 @@ class Orders extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return {
+    let OrderProps = {
         error: state.orders.error,
         loading: state.orders.loading,
         orders: state.orders.orders,
-        authToken: state.authentication.token
+        authToken: state.authentication.token,
+        userToken:state.authentication.userId
     }
+    // console.log("[Orders.js Props]");
+    // console.log(OrderProps);
+    return OrderProps;
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-        onFetchOrders: (token) => dispatch(actions.fetchOrders(token))
+        onFetchOrders: (token,userToken) => dispatch(actions.fetchOrders(token,userToken))
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(withErrorHandler(Orders, axios));

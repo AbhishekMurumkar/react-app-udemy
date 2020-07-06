@@ -119,11 +119,11 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onInitPurchase: () => {
-      dispatch(actionTypes.purchaseInit());
-    },
-  };
-};
-export default connect(mapStateToProps, mapDispatchToProps)(Checkout);
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     onInitPurchase: () => {
+//       dispatch(actionTypes.purchaseInit());
+//     },
+//   };
+// };
+export default connect(mapStateToProps, null)(Checkout);

@@ -30,6 +30,8 @@ import * as serviceWorker from "./serviceWorker";
 // })
 // import App from './containers/App/App';
 import App from "./containers/BBApp/App";
+import BBStore from "./store/BBStore/BBStore";
+import { Provider } from "react-redux";
 // import Assignment1 from './components/Assignment1/Assignment1';
 // import Assignment2 from './components/Assignment2/Assignment2';
 // import Assignment5 from './containers/Assignment5/Assignment5';
@@ -40,13 +42,13 @@ import App from "./containers/BBApp/App";
 // NOte
 // NOte
 
-
-
 ReactDOM.render(
   <React.StrictMode>
     {/* <App title="Blog App using react"/> */}
     {/* <App title='First React App - Person Management'/> */}
-    <App title="Welcome to Burger Builder Application with React" />
+    <Provider store={BBStore}>
+      <App title="Welcome to Burger Builder Application with React" />
+    </Provider>
     {/* <Assignment1 /> */}
     {/* <Assignment2 /> */}
     {/* <Assignment3 /> */}

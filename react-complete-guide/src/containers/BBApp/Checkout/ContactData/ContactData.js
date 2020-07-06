@@ -359,11 +359,12 @@ class ContactData extends Component {
     for (let key in this.state.orderForm) {
       form_data[key] = this.state.orderForm[key].value;
     }
-    console.log(this.state.orderForm);
+    // console.log(this.state.orderForm);
     const order = {
       ingredients: this.props.ingredients,
       price: this.props.totalPrice,
       orderData: form_data,
+      userId:this.props.userToken
     };
     // console.log(form_data);
     // console.log(order);
@@ -400,7 +401,7 @@ class ContactData extends Component {
     for (var input in updated_form) {
       localIsFormValid = localIsFormValid && updated_form[input].valid;
     }
-    console.log("Final form validation=" + localIsFormValid);
+    // console.log("Final form validation=" + localIsFormValid);
     //calculating the whole form validation
     this.setState({
       orderForm: updated_form,
@@ -480,7 +481,8 @@ const mapStateToProps = (state) => {
     ingredients: state.burgerBuilder.ingredients,
     totalPrice: state.burgerBuilder.totalPrice,
     loading: state.orders.loading,
-    token:state.authentication.token
+    token:state.authentication.token,
+    userToken:state.authentication.userId
   };
 };
 

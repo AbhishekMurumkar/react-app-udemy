@@ -33,19 +33,19 @@ export const purchaseBurger = (order,authtoken) => {
   return (dispatch) => {
     // setting the purchase status as start
     dispatch(purchaseBurgerStart());
-    console.log("in purchase burger,now emiting start of purchase burger builder");
+    // console.log("in purchase burger,now emiting start of purchase burger builder");
     // setting the purchase status as start
     try {
       // axios.post("/orders.json", order)
       axios.post("/orders.json?auth="+authtoken, order)
         .then((response) => {
-          console.log(response);
+          // console.log(response);
           dispatch(purchaseBurgerSuccess(response.data.name, order));
           //   this.setState({ loading: false });
           //   this.props.history.replace("/");
         })
         .catch((err) => {
-          console.log(err);
+          // console.log(err);
           dispatch(purchaseBurgerFail(err));
           //   this.setState({ loading: false });
         });
@@ -76,14 +76,18 @@ export const fetchOrderStart = () => {
   }
 }
 // now this is the async code to handle the fetching of orders from firebase
-export const fetchOrders = (authtoken) => {
+export const fetchOrders = (authtoken,userToken) => {
   return (dispatch) => {
     dispatch(fetchOrderStart());
     try {
+      // console.log("[FetchOrders block]");
+      // console.log(authtoken,userToken);
       // making the request without using the authentication
       // axios.get("/orders.json").then((resp) => {
       // making the request with the auth token for authentication  
-      axios.get("/orders.json?auth="+authtoken).then((resp) => {
+      let queryParams = "?auth="+authtoken+"&orderBy=\"userId\"&equalTo=\""+userToken+"\"";
+      // console.log("/orders.json"+queryParams);
+      axios.get("/orders.json"+queryParams).then((resp) => {
         // console.log(resp.data)
         var neworders = [];
         Object.keys(resp.data).forEach((k) => {

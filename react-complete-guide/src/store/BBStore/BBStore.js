@@ -25,7 +25,14 @@ const rootReducer  = combineReducers({
 
 // for asynchronous execution
 // inorder to let inject store in dev tools of browser we need to do following
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+// const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+// now enabling the redux store in the development mode 
+// for this we need to get the node env variable to check the running env
+const composeEnhancers = process.env.NODE_ENV==="development"?window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__:null || compose;
+
+
+
 // for Asynchronous execution via adding middleware
 const BBStore = createStore(rootReducer, composeEnhancers(
     applyMiddleware(thunk)
