@@ -1,0 +1,8 @@
+Next.js: this is a framework based on react which is used to do server side rendering for the react apps 
+
+ins: npm install --save next
+
+Here we dont use the react routes instead we load the pages from the server.
+this also includes the pre-rendering the content with code splits and load necessary components=>lazy loading
+
+this is done by creating "pages" named folder in project root.

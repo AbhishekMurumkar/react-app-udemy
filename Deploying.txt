@@ -1,0 +1,21 @@
+Steps:
+1) check the base path whenever u use routers
+2) build and optimize cmd: npm run build
+3) server must server index.html (404 cases)
+4) upload the build folder to static server
+
+deploying it firebase:
+npm i -g firebase-tools
+firebase login
+firebase init
+> choose hosting
+> choose select existing package
+> enter "build" as folder to upload
+> enter 'N' to change index.html
+=> this generates 2 files: firebase.rc, firebase.json
+firebase deploy
+this will give us 
+Project Console: https://console.firebase.google.com/project/reactburgerbuilder-8b06e/overview
+Hosting URL: https://reactburgerbuilder-8b06e.web.app
+
+next : webpack.txt 

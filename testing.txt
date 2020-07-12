@@ -1,0 +1,30 @@
+Testing:
+==>this is not done with manually, not always
+==>Need to create some code to create tests, which is to be executed automatically
+see testing.png
+
+Required Testing Tools:
+1) Test Runner : executes tests and provides validation library
+    DONE By = Jest : comes with create-react-app , this is not only limited to react but also used to test with javascript coding
+2) Test utilities: mounts components and allows to dig up into DOM
+    Done By 1. React test utils
+            2. Enzyme
+
+What to test?
+->Dont test the library
+->Dont test complex connections
+->Test the isolated units, test the component functions/ reducers 
+->Test conditional outputs
+
+Packages:
+npm install --save enzyme react-test-renderer enzyme-adapter-react-16
+
+enzyme Package allows us to render packages where independent of dependencies of our application, this helps in maintaining the unit tests.In order to use enzyme we need to
+1) write a configuration to specify enzyme what, which component to load, this is done by enzyme-adapter-react-v.
+2) then to re-render the component we need to use 'shallow' method, it renders component without deep-leveled
+
+References:
+https://enzymejs.github.io/enzyme/docs/api/
+https://jestjs.io/
+
+Next: Deploying.txt

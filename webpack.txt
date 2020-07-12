@@ -1,0 +1,23 @@
+introduction of webpack:
+bundler - convert multiple js to single js file
+> optimizes files content
+> transpliles es5,6 to javascript
+
+
+working:
+1. one entry point (app.js) which can lead to open multiple files
+2. Loaders: file dependent transformations, applied changes to files based on file type
+3. plugins: appliying changes to all content of text got from Loaders
+4. output: correctly ordered, concatnated output (dist/output.js)
+
+basic workflow req:
+1. support next-gen javascript features => compile next-gen javascript concatnated
+2. handle JSX
+3. css AutoPrefixing
+4. support image imports
+5. optimize code
+
+https://webpack.js.org/concepts/
+https://babeljs.io/
+
+next: NEXTJS.TXT

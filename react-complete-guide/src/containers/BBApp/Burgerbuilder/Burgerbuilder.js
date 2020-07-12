@@ -179,7 +179,7 @@ import { connect } from "react-redux";
 
 //now importing the actions types
 import * as burgerBuilderActions from "../../../store/BBStore/actions/index";
-class Burgerbuilder extends Component {
+export class Burgerbuilder extends Component {
   burgerBuilder;
   // constructor(props) {
   //   super(props);
