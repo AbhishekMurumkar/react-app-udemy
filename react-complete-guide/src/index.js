@@ -7,7 +7,6 @@ import * as serviceWorker from "./serviceWorker";
 // import App from "./containers/BlogApp/App";
 // import axios from 'axios';
 
-
 // axios.defaults.baseURL="https://jsonplaceholder.typicode.com/";
 // axios.defaults.headers.common['Authorization']='abhi';
 // axios.defaults.headers.post['Accept']='application/json';
@@ -29,13 +28,17 @@ import * as serviceWorker from "./serviceWorker";
 //   return Promise.reject(err);
 // })
 // import App from './containers/App/App';
+
+/* for burger builder */
 import App from "./containers/BBApp/App";
 import BBStore from "./store/BBStore/BBStore";
 import { Provider } from "react-redux";
+/* for burger builder */
+
 // import Assignment1 from './components/Assignment1/Assignment1';
 // import Assignment2 from './components/Assignment2/Assignment2';
 // import Assignment5 from './containers/Assignment5/Assignment5';
-
+// import App from "./containers/AnimationApp/App";
 // NOte
 // NOte
 // in order to use redux application from lecture:section 14 use index.redux.js

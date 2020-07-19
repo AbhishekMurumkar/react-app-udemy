@@ -30,7 +30,7 @@ const asyncAuth = asyncComp(()=>{
 });
 //loading the Logout component asynchronously
 const asyncLogout = asyncComp(()=>{
-  return import("./Auth/Auth");
+  return import("./Auth/Logout/Logout");
 });
 
 

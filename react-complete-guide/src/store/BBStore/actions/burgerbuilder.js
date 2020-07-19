@@ -30,28 +30,31 @@ export const fetchIngredientFailed = ()=>{
 }
 
 export const initIngredient = () => {
-  //async code to get the initial ingredients from firebase
-  return (dispatch) => {
-    setTimeout(() => {
-      axios
-        .get("https://reactburgerbuilder-8b06e.firebaseio.com/ingredients.json")
-        .then((resp) => {
-          // console.log("got ingredients");
-          dispatch(set_Ingredient(resp.data));
-        //   this.props.initializeIngredients.call(this, resp.data);
-        //   this.setState({
-        //     purchasable: this.props.totalPrice > 4 ? true : false,
-        //   });
-        })
-        .catch((err) => {
-          // console.log(err);
-          dispatch(fetchIngredientFailed());
-        //   this.burgerBuilder = (
-        //     <p style={{ textAlign: "center" }}>
-        //       Ingredients cant be loaded.Server error
-        //     </p>
-        //   );
-        });
-    }, 1500);
-  };
+  // //async code to get the initial ingredients from firebase
+  // return (dispatch) => {
+  //   setTimeout(() => {
+  //     axios
+  //       .get("https://reactburgerbuilder-8b06e.firebaseio.com/ingredients.json")
+  //       .then((resp) => {
+  //         // console.log("got ingredients");
+  //         dispatch(set_Ingredient(resp.data));
+  //       //   this.props.initializeIngredients.call(this, resp.data);
+  //       //   this.setState({
+  //       //     purchasable: this.props.totalPrice > 4 ? true : false,
+  //       //   });
+  //       })
+  //       .catch((err) => {
+  //         // console.log(err);
+  //         dispatch(fetchIngredientFailed());
+  //       //   this.burgerBuilder = (
+  //       //     <p style={{ textAlign: "center" }}>
+  //       //       Ingredients cant be loaded.Server error
+  //       //     </p>
+  //       //   );
+  //       });
+  //   }, 1500);
+  // };
+  return{
+    type:actionTypes.INITIALIZE_INGREDIENT
+  }
 };

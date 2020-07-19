@@ -1,0 +1,14 @@
+life cycle hooks methods of react are not react hooks.
+React Hooks - these are javascript function which can only be used from inside funcional component or other hooks.
+The hooks have nothing to do with lifecycle hooks of react.
+idea behind using hooks:
+1.expose certain (state) functionalities to functional components like managing state & using life cycle methods different than class based components.
+2. highly reusable code and independent for each component.
+3. you can use one and same hook in multiple functional components.
+4. use hook in each place independent of component being used.
+5. we use hooks to share functionality (not data) b/w components
+6. we can add logic to multiple components but every component will run that logic on its own
+
+Summary:allows to add state,have a life cycle method to functional components and to share logic(state)across components.
+
+naming convention -useXXXXXXX()

@@ -1,0 +1,1 @@
+{"ast":null,"code":"var __jsx = React.createElement;\nimport React from \"react\";\n\nconst auth = props => {\n  return __jsx(\"div\", null, __jsx(\"h1\", null, \"The Auth Index Page\"));\n};\n\nexport default auth;","map":null,"metadata":{},"sourceType":"module"}

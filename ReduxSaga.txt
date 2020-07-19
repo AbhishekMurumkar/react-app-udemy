@@ -1,0 +1,28 @@
+this package is alternative to the redux-thunk package
+
+ins : npm i --save redux-saga
+
+this uses generator to execute the code present in action dispatcher
+this is mainly used to separe the code of action dispatcher and other actions involved in changing the redux store values
+
+Generator: these are next level javascript features which are functions which can be executed incrementally, i.e., we can call them but they dont run on start to end immediately but can pause their execution during function execution.Thus in the generator for every step we need to prepend key word 'yield' keyword, which means that every step should be executed and be waited until it finishes
+
+In redux-saga/effects package, we use
+
+put = to dispatch an action
+call = execute a function
+
+The first thing to notice is that we're calling the api functions using the form yield call(func, ...args). call doesn't execute the effect, it just creates a plain object like {type: 'CALL', func, args}. The execution is delegated to the redux-saga middleware which takes care of executing the function and resuming the generator with its result.
+
+The main advantage is that you can test the generator outside of Redux using simple equality checks
+
+The second thing to notice is the call to yield take(ACTION). Thunks are called by the action creator on each new action (e.g. LOGIN_REQUEST). i.e. actions are continually pushed to thunks, and thunks have no control on when to stop handling those actions.
+
+In redux-saga, generators pull the next action. i.e. they have control when to listen for some action, and when to not. In the above example the flow instructions are placed inside a while(true) loop, so it'll listen for each incoming action, which somewhat mimics the thunk pushing behavior.
+
+The pull approach allows implementing complex control flows. Suppose for example we want to add the following requirements
+->Handle LOGOUT user action
+->upon the first successful login, the server returns a token which expires in some delay stored in a expires_in field. We'll have to refresh the authorization in the background on each expires_in milliseconds
+->Take into account that when waiting for the result of api calls (either initial login or refresh) the user may logout in-between.
+
+Next : react-hooks.txt
