@@ -30,15 +30,17 @@ import * as serviceWorker from "./serviceWorker";
 // import App from './containers/App/App';
 
 /* for burger builder */
-import App from "./containers/BBApp/App";
-import BBStore from "./store/BBStore/BBStore";
-import { Provider } from "react-redux";
+// import App from "./containers/BBApp/App";
+// import BBStore from "./store/BBStore/BBStore";
+// import { Provider } from "react-redux";
 /* for burger builder */
 
 // import Assignment1 from './components/Assignment1/Assignment1';
 // import Assignment2 from './components/Assignment2/Assignment2';
 // import Assignment5 from './containers/Assignment5/Assignment5';
 // import App from "./containers/AnimationApp/App";
+import App from "./containers/ReactHooksApp/App";
+// import App from "./components/Assignment6";
 // NOte
 // NOte
 // in order to use redux application from lecture:section 14 use index.redux.js
@@ -49,13 +51,13 @@ ReactDOM.render(
   <React.StrictMode>
     {/* <App title="Blog App using react"/> */}
     {/* <App title='First React App - Person Management'/> */}
-    <Provider store={BBStore}>
+    {/* <Provider store={BBStore}>
       <App title="Welcome to Burger Builder Application with React" />
-    </Provider>
+    </Provider> */}
     {/* <Assignment1 /> */}
     {/* <Assignment2 /> */}
     {/* <Assignment3 /> */}
-    {/* <App/> */}
+    <App/>
     {/* <Assignment5></Assignment5> */}
   </React.StrictMode>,
   document.getElementById("root")
