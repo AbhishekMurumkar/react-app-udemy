@@ -40,6 +40,7 @@ import * as serviceWorker from "./serviceWorker";
 // import Assignment5 from './containers/Assignment5/Assignment5';
 // import App from "./containers/AnimationApp/App";
 import App from "./containers/ReactHooksApp/App";
+import AuthContextProvider from "./containers/ReactHooksApp/context/auth-context";
 // import App from "./components/Assignment6";
 // NOte
 // NOte
@@ -57,7 +58,7 @@ ReactDOM.render(
     {/* <Assignment1 /> */}
     {/* <Assignment2 /> */}
     {/* <Assignment3 /> */}
-    <App/>
+    <AuthContextProvider><App/></AuthContextProvider>
     {/* <Assignment5></Assignment5> */}
   </React.StrictMode>,
   document.getElementById("root")
